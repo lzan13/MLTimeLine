@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:orientation="vertical"
+            android:padding="@dimen/ml_dimen_24">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ml_dimen_8"
+                android:layout_marginLeft="@dimen/ml_dimen_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_clock_white_18dp" />
+
+                <View
+                    android:layout_width="@dimen/ml_dimen_4"
+                    android:layout_height="@dimen/ml_dimen_1"
+                    android:layout_margin="@dimen/ml_dimen_4"
+                    android:background="@color/ml_bg_gray_white" />
+
+                <EditText
+                    android:id="@+id/ml_edit_signinname"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ml_dimen_48"
+                    android:background="@drawable/ml_shape_bg_edittext_sign"
+                    android:drawableLeft="@mipmap/icon_account_circle_gray_24dp"
+                    android:drawablePadding="@dimen/ml_dimen_8"
+                    android:hint="@string/ml_account"
+                    android:inputType="text"
+                    android:maxLength="16"
+                    android:paddingLeft="@dimen/ml_dimen_8"
+                    android:shadowColor="@color/ml_gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:singleLine="true"
+                    android:textColor="@color/ml_white"
+                    android:textColorHint="@color/ml_text_gray_white"
+                    android:textSize="@dimen/ml_size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ml_dimen_8"
+                android:layout_marginLeft="@dimen/ml_dimen_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_clock_white_18dp" />
+
+                <View
+                    android:layout_width="@dimen/ml_dimen_4"
+                    android:layout_height="@dimen/ml_dimen_1"
+                    android:layout_margin="@dimen/ml_dimen_4"
+                    android:background="@color/ml_bg_gray_white" />
+
+                <EditText
+                    android:id="@+id/ml_edit_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ml_dimen_48"
+                    android:background="@drawable/ml_shape_bg_edittext_sign"
+                    android:drawableLeft="@mipmap/icon_email_gray_24dp"
+                    android:drawablePadding="@dimen/ml_dimen_8"
+                    android:hint="@string/ml_email"
+                    android:inputType="text"
+                    android:maxLength="32"
+                    android:paddingLeft="@dimen/ml_dimen_8"
+                    android:shadowColor="@color/ml_gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:singleLine="true"
+                    android:textColor="@color/ml_white"
+                    android:textColorHint="@color/ml_text_gray_white"
+                    android:textSize="@dimen/ml_size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ml_dimen_8"
+                android:layout_marginLeft="@dimen/ml_dimen_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_clock_white_18dp" />
+
+                <View
+                    android:layout_width="@dimen/ml_dimen_4"
+                    android:layout_height="@dimen/ml_dimen_1"
+                    android:layout_margin="@dimen/ml_dimen_4"
+                    android:background="@color/ml_bg_gray_white" />
+
+                <EditText
+                    android:id="@+id/ml_edit_password1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ml_dimen_48"
+                    android:background="@drawable/ml_shape_bg_edittext_sign"
+                    android:drawableLeft="@mipmap/icon_lock_gray_24dp"
+                    android:drawablePadding="@dimen/ml_dimen_8"
+                    android:hint="@string/ml_password"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:paddingLeft="@dimen/ml_dimen_8"
+                    android:shadowColor="@color/ml_gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:singleLine="true"
+                    android:textColor="@color/ml_white"
+                    android:textColorHint="@color/ml_text_gray_white"
+                    android:textSize="@dimen/ml_size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ml_dimen_8"
+                android:layout_marginLeft="@dimen/ml_dimen_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_clock_white_18dp" />
+
+                <View
+                    android:layout_width="@dimen/ml_dimen_4"
+                    android:layout_height="@dimen/ml_dimen_1"
+                    android:layout_margin="@dimen/ml_dimen_4"
+                    android:background="@color/ml_bg_gray_white" />
+
+                <EditText
+                    android:id="@+id/ml_edit_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ml_dimen_48"
+                    android:background="@drawable/ml_shape_bg_edittext_sign"
+                    android:drawableLeft="@mipmap/icon_lock_gray_24dp"
+                    android:drawablePadding="@dimen/ml_dimen_8"
+                    android:hint="@string/ml_password_confirm"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:paddingLeft="@dimen/ml_dimen_8"
+                    android:shadowColor="@color/ml_gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:singleLine="true"
+                    android:textColor="@color/ml_white"
+                    android:textColorHint="@color/ml_text_gray_white"
+                    android:textSize="@dimen/ml_size_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ml_dimen_24"
+                android:layout_marginLeft="@dimen/ml_dimen_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_clock_white_18dp" />
+
+                <View
+                    android:layout_width="@dimen/ml_dimen_4"
+                    android:layout_height="@dimen/ml_dimen_1"
+                    android:layout_margin="@dimen/ml_dimen_4"
+                    android:background="@color/ml_bg_gray_white" />
+
+                <Button
+                    android:id="@+id/ml_btn_signup"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ml_dimen_48"
+                    android:background="@drawable/ml_shape_bg_btn_sign"
+                    android:shadowColor="@color/ml_gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:text="@string/ml_signup"
+                    android:textColor="@color/ml_btn_text_color_white"
+                    android:textSize="@dimen/ml_size_18" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ml_dimen_24"
+                android:layout_marginLeft="@dimen/ml_dimen_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_clock_white_18dp" />
+
+                <View
+                    android:layout_width="@dimen/ml_dimen_4"
+                    android:layout_height="@dimen/ml_dimen_1"
+                    android:layout_margin="@dimen/ml_dimen_4"
+                    android:background="@color/ml_bg_gray_white" />
+
+                <Button
+                    android:id="@+id/ml_btn_cancel_goto_signin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ml_dimen_48"
+                    android:background="@drawable/ml_shape_bg_btn_sign"
+                    android:shadowColor="@color/ml_gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
+                    android:text="@string/ml_signin_goto"
+                    android:textColor="@color/ml_btn_text_color_white"
+                    android:textSize="@dimen/ml_size_18" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ml_dimen_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_clock_white_18dp" />
+
+                <View
+                    android:layout_width="@dimen/ml_dimen_4"
+                    android:layout_height="@dimen/ml_dimen_1"
+                    android:layout_margin="@dimen/ml_dimen_4"
+                    android:background="@color/ml_bg_gray_white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ml_dimen_4"
+                    android:shadowColor="@color/ml_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="5"
+                    android:text="@string/ml_hello"
+                    android:textColor="@color/ml_text_white"
+                    android:textSize="@dimen/ml_size_14" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

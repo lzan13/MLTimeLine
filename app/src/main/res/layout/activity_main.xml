@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ml_transparent_primary">
+
+    <!--drawerlayout-->
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/ml_drawerlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+
+        <!--中间内容布局-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/ml_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!--toolbar-->
+            <include layout="@layout/ml_toolbar_layout" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/ml_fragment_drawer_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+</RelativeLayout>

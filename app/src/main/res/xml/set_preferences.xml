@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/ml_set_notify">
+        <ListPreference
+            android:dialogTitle="请选择一项"
+            android:entries="@array/ml_menu_title"
+            android:entryValues="@array/ml_menu_title"
+            android:key="list_preferenc"
+            android:summary="一个使用了列表对话框的例子"
+            android:title="请选择一项" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/ml_set_about">
+        <Preference android:title="@string/ml_set_account">
+            <intent
+                android:targetClass="net.melove.app.ml.activity.MLUserActivity"
+                android:targetPackage="net.melove.app.ml.activity" />
+        </Preference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

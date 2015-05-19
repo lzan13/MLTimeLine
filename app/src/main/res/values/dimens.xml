@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="ml_dimen_px_1">1.0px</dimen>
+
+    <dimen name="ml_dimen_0">0.0dp</dimen>
+    <dimen name="ml_dimen_1">1.0dp</dimen>
+    <dimen name="ml_dimen_2">2.0dp</dimen>
+    <dimen name="ml_dimen_3">3.0dp</dimen>
+    <dimen name="ml_dimen_4">4.0dp</dimen>
+    <dimen name="ml_dimen_6">6.0dp</dimen>
+    <dimen name="ml_dimen_8">8.0dp</dimen>
+    <dimen name="ml_dimen_10">10.0dp</dimen>
+    <dimen name="ml_dimen_16">16.0dp</dimen>
+    <dimen name="ml_dimen_20">20.0dp</dimen>
+    <dimen name="ml_dimen_24">24.0dp</dimen>
+    <dimen name="ml_dimen_26">26.0dp</dimen>
+    <dimen name="ml_dimen_32">32.0dp</dimen>
+    <dimen name="ml_dimen_36">36.0dp</dimen>
+    <dimen name="ml_dimen_40">40.0dp</dimen>
+    <dimen name="ml_dimen_48">48.0dp</dimen>
+    <dimen name="ml_dimen_56">56.0dp</dimen>
+    <dimen name="ml_dimen_72">72.0dp</dimen>
+    <dimen name="ml_dimen_96">96.0dp</dimen>
+    <dimen name="ml_dimen_128">128.0dp</dimen>
+    <dimen name="ml_dimen_256">256.0dp</dimen>
+    <dimen name="ml_dimen_280">280.0dp</dimen>
+
+    <!--文字大小尺寸-->
+    <dimen name="ml_size_10">10.0sp</dimen>
+    <dimen name="ml_size_12">12.0sp</dimen>
+    <dimen name="ml_size_14">14.0sp</dimen>
+    <dimen name="ml_size_16">16.0sp</dimen>
+    <dimen name="ml_size_18">18.0sp</dimen>
+    <dimen name="ml_size_20">20.0sp</dimen>
+    <dimen name="ml_size_24">24.0sp</dimen>
+    <dimen name="ml_size_28">28.0sp</dimen>
+
+
+</resources>
