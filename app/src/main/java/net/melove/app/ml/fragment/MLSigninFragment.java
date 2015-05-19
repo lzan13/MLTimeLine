@@ -17,7 +17,6 @@ import android.widget.EditText;
 import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
 import net.melove.app.ml.activity.MLMainActivity;
-import net.melove.app.ml.activity.MLUserActivity;
 import net.melove.app.ml.config.MLConfig;
 import net.melove.app.ml.db.MLDBConstants;
 import net.melove.app.ml.db.MLDBHelper;
@@ -97,7 +96,7 @@ public class MLSigninFragment extends MLBaseFragment {
         MLRequestParams params = new MLRequestParams();
         params.putParams("signinname", name);
         params.putParams("password", hexpass);
-        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.URL + MLHttpConstants.API_SIGNIN,
+        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.API_URL + MLHttpConstants.API_SIGNIN,
                 params, new MLStringResponseListener() {
                     // 获取网络请求成功，登录却不一定成功，需要进一步解析数据
                     @Override

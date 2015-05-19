@@ -1,15 +1,28 @@
 package net.melove.app.ml.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
+import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
+import net.melove.app.ml.http.MLHttpConstants;
 import net.melove.app.ml.info.NoteInfo;
+import net.melove.app.ml.utils.MLDate;
+import net.melove.app.ml.utils.MLFile;
 import net.melove.app.ml.views.MLImageView;
 
 import java.util.List;
@@ -23,11 +36,22 @@ public class MLTimeLineAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<NoteInfo> mNoteInfoList;
 
+    private DisplayImageOptions options;
 
     public MLTimeLineAdapter(Context context, List<NoteInfo> noteInfoList) {
         mContext = context;
         mNoteInfoList = noteInfoList;
         mInflater = LayoutInflater.from(mContext);
+        options = new DisplayImageOptions.Builder()
+                .bitmapConfig(Bitmap.Config.ARGB_8888)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .resetViewBeforeLoading(true)
+                .showImageForEmptyUri(R.mipmap.bg_top)
+                .showImageOnLoading(R.mipmap.bg_top)
+                .build();
     }
 
 
@@ -52,50 +76,57 @@ public class MLTimeLineAdapter extends BaseAdapter {
         MLItem mlItem = null;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.ml_timeline_list_item, null);
+
             mlItem = new MLItem(convertView);
+
             convertView.setTag(mlItem);
-        }else{
+        } else {
             mlItem = (MLItem) convertView.getTag();
         }
-//        mlItem.
-        mlItem.getAvatarView().setTag(noteInfo.getUserId());
-        mlItem.getContentTextView().setText(noteInfo.getContent());
+
+        Bitmap avatar = MLFile.fileToBitmap(MLApp.getUserImage() + noteInfo.getUserInfo().getAvatar());
+        if (avatar != null) {
+            mlItem.avatarView.setImageBitmap(avatar);
+        }
+        mlItem.nameTextView.setText(noteInfo.getUserInfo().getNickname());
+        mlItem.timeTextView.setText(MLDate.formatDate(noteInfo.getCreateAt()));
+        mlItem.contentTextView.setText(noteInfo.getContent());
+
+
+        mlItem.imageView.setTag(MLHttpConstants.UPLOAD_URL + MLHttpConstants.IMAGE_URL + noteInfo.getImage());
+        if (noteInfo.getNoteType().equals("image")) {
+            mlItem.imageView.setVisibility(View.VISIBLE);
+            final ImageView imageView = mlItem.imageView;
+            String url = MLHttpConstants.UPLOAD_URL + MLHttpConstants.IMAGE_URL + noteInfo.getImage();
+            ImageLoader.getInstance().displayImage(url, mlItem.imageView);
+        } else {
+            mlItem.imageView.setVisibility(View.GONE);
+        }
+
 //        mlItem.getReplyListView().setAdapter();
 
         return convertView;
     }
 
+
     private static class MLItem {
         private View baseView;
         private MLImageView avatarView;
+        private TextView nameTextView;
+        private TextView timeTextView;
         private TextView contentTextView;
-        private MLImageView imageView;
+        private ImageView imageView;
         private ListView replyListView;
 
 
         public MLItem(View view) {
             baseView = view;
-        }
-
-        public MLImageView getAvatarView() {
-            avatarView = (MLImageView) baseView.findViewById(R.id.ml_img_timeline_avatar);
-            return avatarView;
-        }
-
-        public TextView getContentTextView() {
-            contentTextView = (TextView) baseView.findViewById(R.id.ml_text_timeline_content);
-            return contentTextView;
-        }
-
-        public MLImageView getImageView() {
-            imageView = (MLImageView) baseView.findViewById(R.id.ml_img_timeline_image);
-            return imageView;
-        }
-        public ListView getReplyListView() {
-            replyListView = (ListView) baseView.findViewById(R.id.ml_listview_timeline_reply);
-            return replyListView;
+            avatarView = (MLImageView) baseView.findViewById(R.id.ml_img_note_user_avatar);
+            nameTextView = (TextView) baseView.findViewById(R.id.ml_text_note_user_nickname);
+            timeTextView = (TextView) baseView.findViewById(R.id.ml_text_note_time);
+            contentTextView = (TextView) baseView.findViewById(R.id.ml_text_note_content);
+            imageView = (ImageView) baseView.findViewById(R.id.ml_img_note_image);
+            replyListView = (ListView) baseView.findViewById(R.id.ml_listview_note_reply);
         }
     }
-
-
 }

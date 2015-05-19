@@ -3,7 +3,6 @@ package net.melove.app.ml.fragment;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,9 +14,7 @@ import android.widget.EditText;
 import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
 import net.melove.app.ml.activity.MLMainActivity;
-import net.melove.app.ml.activity.MLUserActivity;
 import net.melove.app.ml.config.MLConfig;
-import net.melove.app.ml.constants.MLAppConstant;
 import net.melove.app.ml.db.MLDBConstants;
 import net.melove.app.ml.db.MLDBHelper;
 import net.melove.app.ml.http.MLHttpConstants;
@@ -113,7 +110,7 @@ public class MLSignupFragment extends MLBaseFragment {
         params.putParams("signinname", name);
         params.putParams("password", hexPass);
         params.putParams("email", email);
-        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.URL + MLHttpConstants.API_SIGNUP,
+        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.API_URL + MLHttpConstants.API_SIGNUP,
                 params, new MLStringResponseListener() {
                     // 获取返回数据成功，接下来进一步解析数据
                     @Override

@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,10 +15,8 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
 import net.melove.app.ml.activity.MLSignActivity;
 import net.melove.app.ml.adapter.MLMessageAdapter;
@@ -30,7 +27,6 @@ import net.melove.app.ml.http.MLHttpUtil;
 import net.melove.app.ml.http.MLRequestParams;
 import net.melove.app.ml.http.MLStringResponseListener;
 import net.melove.app.ml.info.MessageInfo;
-import net.melove.app.ml.info.NoteInfo;
 import net.melove.app.ml.info.UserInfo;
 import net.melove.app.ml.utils.MLSPUtil;
 import net.melove.app.ml.utils.MLScreen;
@@ -49,6 +45,7 @@ import java.util.List;
 public class MLMessageFragment extends MLBaseFragment {
 
     private Activity mActivity;
+    private MLFragmentCallback mlCallback;
 
     private UserInfo mUserInfo;
     private UserInfo mSpouseInfo;
@@ -91,22 +88,27 @@ public class MLMessageFragment extends MLBaseFragment {
     private void initInfo() {
         MLDBHelper mldbHelper = MLDBHelper.getInstance();
         if (mldbHelper == null) {
-            MLToast.makeToast(R.mipmap.icon_emotion_sad_24dp,
-                    mActivity.getResources().getString(R.string.ml_hello)).show();
-            Intent intent = new Intent();
-            intent.setClass(mActivity, MLSignActivity.class);
-            startActivity(intent);
+            mlCallback.mlClickListener(10);
             return;
         }
         String s1 = MLDBConstants.COL_ACCESS_TOKEN + "=?";
         String args1[] = new String[]{(String) MLSPUtil.get(mActivity, MLDBConstants.COL_ACCESS_TOKEN, "")};
         Cursor c1 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s1, args1, null, null, null, null);
-        mUserInfo = new UserInfo(c1);
+        if (c1.moveToFirst()) {
+            do {
+                mUserInfo = new UserInfo(c1);
+            } while (c1.moveToNext());
+        }
 
         String s2 = MLDBConstants.COL_USER_ID + "=?";
         String args2[] = new String[]{mUserInfo.getSpouseId()};
         Cursor c2 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s2, args2, null, null, null, null);
-        mSpouseInfo = new UserInfo(c2);
+        if (c2.moveToFirst()) {
+            do {
+                mSpouseInfo = new UserInfo(c2);
+            } while (c2.moveToNext());
+        }
+        mldbHelper.closeDatabase();
     }
 
 
@@ -130,7 +132,7 @@ public class MLMessageFragment extends MLBaseFragment {
                     public void onRefresh() {
                         MLRequestParams params = new MLRequestParams();
                         params.putParams(MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
-                        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.URL + MLHttpConstants.API_MESSAGE, params,
+                        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.API_URL + MLHttpConstants.API_MESSAGE, params,
                                 new MLStringResponseListener() {
                                     @Override
                                     public void onFailure(int state, String content) {
@@ -235,7 +237,7 @@ public class MLMessageFragment extends MLBaseFragment {
         mListView.setAdapter(mlMessageAdapter);
     }
 
-    private void updateListView(){
+    private void updateListView() {
         mMessageInfoList.clear();
         MLDBHelper mldbHelper = MLDBHelper.getInstance();
         if (mldbHelper != null) {
@@ -259,7 +261,7 @@ public class MLMessageFragment extends MLBaseFragment {
         mlMessageAdapter.notifyDataSetChanged();
     }
 
-    Handler mHandler = new Handler(){
+    Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             int what = msg.what;
@@ -271,4 +273,10 @@ public class MLMessageFragment extends MLBaseFragment {
             }
         }
     };
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mlCallback = (MLFragmentCallback) activity;
+    }
 }

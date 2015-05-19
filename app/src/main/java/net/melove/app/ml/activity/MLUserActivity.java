@@ -31,11 +31,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
@@ -50,7 +46,6 @@ import net.melove.app.ml.http.MLStringResponseListener;
 import net.melove.app.ml.info.UserInfo;
 import net.melove.app.ml.manager.MLSystemBarManager;
 import net.melove.app.ml.utils.MLCrypto;
-import net.melove.app.ml.utils.MLDate;
 import net.melove.app.ml.utils.MLFile;
 import net.melove.app.ml.utils.MLSPUtil;
 import net.melove.app.ml.utils.MLScreen;
@@ -143,12 +138,20 @@ public class MLUserActivity extends MLBaseActivity {
         String s1 = MLDBConstants.COL_ACCESS_TOKEN + "=?";
         String args1[] = new String[]{(String) MLSPUtil.get(mActivity, MLDBConstants.COL_ACCESS_TOKEN, "")};
         Cursor c1 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s1, args1, null, null, null, null);
-        mUserInfo = new UserInfo(c1);
+        if (c1.moveToFirst()) {
+            do {
+                mUserInfo = new UserInfo(c1);
+            } while (c1.moveToNext());
+        }
 
         String s2 = MLDBConstants.COL_USER_ID + "=?";
         String args2[] = new String[]{mUserInfo.getSpouseId()};
         Cursor c2 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s2, args2, null, null, null, null);
-        mSpouseInfo = new UserInfo(c2);
+        if (c2.moveToFirst()) {
+            do {
+                mSpouseInfo = new UserInfo(c2);
+            } while (c2.moveToNext());
+        }
         mldbHelper.closeDatabase();
     }
 
@@ -238,7 +241,7 @@ public class MLUserActivity extends MLBaseActivity {
             public void onRefresh() {
                 MLRequestParams params = new MLRequestParams();
                 params.putParams(MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
-                MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.URL + MLHttpConstants.API_USER, params,
+                MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.API_URL + MLHttpConstants.API_USER, params,
                         new MLStringResponseListener() {
                             @Override
                             public void onFailure(int state, String content) {
@@ -361,7 +364,7 @@ public class MLUserActivity extends MLBaseActivity {
                         params.putParams(MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
                         params.putParams("old_password", MLCrypto.cryptoStr2MD5(oldStr));
                         params.putParams("new_password", MLCrypto.cryptoStr2MD5(confirmStr));
-                        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.URL + MLHttpConstants.API_USER_SETPASSWORD,
+                        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.API_URL + MLHttpConstants.API_USER_SETPASSWORD,
                                 params, new MLStringResponseListener() {
 
                                     // 获取返回数据成功，接下来进一步解析数据
@@ -416,7 +419,7 @@ public class MLUserActivity extends MLBaseActivity {
         params.putParams(MLDBConstants.COL_GENDER, "" + mUserInfo.getGender());
         params.putParams(MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
 
-        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.URL + MLHttpConstants.API_USER_SETINFO,
+        MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.API_URL + MLHttpConstants.API_USER_SETINFO,
                 params, new MLStringResponseListener() {
 
                     // 获取返回数据成功，接下来进一步解析数据
@@ -475,7 +478,7 @@ public class MLUserActivity extends MLBaseActivity {
                 params.putParams(MLDBConstants.COL_SPOUSE_ID, spouseId);
                 params.putParams(MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
 
-                MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.URL + MLHttpConstants.API_USER_SETSPOUSE,
+                MLHttpUtil.getInstance(mActivity).post(MLHttpConstants.API_URL + MLHttpConstants.API_USER_SETSPOUSE,
                         params, new MLStringResponseListener() {
                             // 获取返回数据成功，接下来进一步解析数据
                             @Override
@@ -537,7 +540,7 @@ public class MLUserActivity extends MLBaseActivity {
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         multipartEntityBuilder.addPart("mlavatar", new FileBody(new File(MLApp.getUserImage() + mUserInfo.getAvatar())));
         multipartEntityBuilder.addTextBody("access_token", mUserInfo.getAccessToken());
-        String url = MLHttpConstants.URL + MLHttpConstants.API_USER_SETAVATAR;
+        String url = MLHttpConstants.API_URL + MLHttpConstants.API_USER_SETAVATAR;
         uploadImage(url, multipartEntityBuilder.build());
     }
 
@@ -548,7 +551,7 @@ public class MLUserActivity extends MLBaseActivity {
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         multipartEntityBuilder.addPart("mlcover", new FileBody(new File(MLApp.getUserImage() + mUserInfo.getCover())));
         multipartEntityBuilder.addTextBody("access_token", mUserInfo.getAccessToken());
-        String url = MLHttpConstants.URL + MLHttpConstants.API_USER_SETCOVER;
+        String url = MLHttpConstants.API_URL + MLHttpConstants.API_USER_SETCOVER;
         uploadImage(url, multipartEntityBuilder.build());
     }
 

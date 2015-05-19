@@ -1,12 +1,9 @@
 package net.melove.app.ml.activity;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -24,8 +21,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -113,7 +108,11 @@ public class MLNotePutActivity extends MLBaseActivity {
         String s1 = MLDBConstants.COL_ACCESS_TOKEN + "=?";
         String args1[] = new String[]{(String) MLSPUtil.get(mActivity, MLDBConstants.COL_ACCESS_TOKEN, "")};
         Cursor c1 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s1, args1, null, null, null, null);
-        mUserInfo = new UserInfo(c1);
+        if (c1.moveToFirst()) {
+            do {
+                mUserInfo = new UserInfo(c1);
+            } while (c1.moveToNext());
+        }
         mldbHelper.closeDatabase();
     }
 
@@ -219,7 +218,7 @@ public class MLNotePutActivity extends MLBaseActivity {
         multipartEntityBuilder.addPart(MLDBConstants.COL_CONTENT, stringBody);
         multipartEntityBuilder.addTextBody(MLDBConstants.COL_NOTE_TYPE, "text");
         multipartEntityBuilder.addTextBody(MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
-        String url = MLHttpConstants.URL + MLHttpConstants.API_NOTE_PUT_TEXT;
+        String url = MLHttpConstants.API_URL + MLHttpConstants.API_NOTE_PUT_TEXT;
         MLHttpUtil.getInstance(mActivity).postImage(url, multipartEntityBuilder.build(),
                 new MLImageResponseListener() {
                     // 获取返回数据成功，接下来进一步解析数据
@@ -268,7 +267,7 @@ public class MLNotePutActivity extends MLBaseActivity {
             multipartEntityBuilder.addPart(MLDBConstants.COL_CONTENT, stringBody);
             multipartEntityBuilder.addTextBody(MLDBConstants.COL_NOTE_TYPE, "image");
             multipartEntityBuilder.addTextBody(MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
-            String url = MLHttpConstants.URL + MLHttpConstants.API_NOTE_PUT_IMAGE;
+            String url = MLHttpConstants.API_URL + MLHttpConstants.API_NOTE_PUT_IMAGE;
             MLHttpUtil.getInstance(mActivity).postImage(url, multipartEntityBuilder.build(),
                     new MLImageResponseListener() {
                         // 获取返回数据成功，接下来进一步解析数据

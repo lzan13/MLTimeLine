@@ -2,7 +2,19 @@ package net.melove.app.ml;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Environment;
+
+
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
+import java.io.File;
 
 /**
  * Created by Administrator on 2015/3/25.
@@ -28,6 +40,31 @@ public class MLApp extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .bitmapConfig(Bitmap.Config.ARGB_8888)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .resetViewBeforeLoading(false)
+                .showImageForEmptyUri(R.mipmap.bg_top)
+                .showImageOnLoading(R.mipmap.bg_top)
+                .build();
+
+        // Create global configuration and initialize ImageLoader with this config
+        ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
+        config.denyCacheImageMultipleSizesInMemory();
+        config.diskCache(new UnlimitedDiscCache(new File(MLApp.getCache())));
+        config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
+        config.tasksProcessingOrder(QueueProcessingType.LIFO);
+        config.threadPriority(Thread.NORM_PRIORITY - 2);
+        config.threadPoolSize(5);
+        config.defaultDisplayImageOptions(options);
+
+        // 开发模式，打印Debug调试信息
+        config.writeDebugLogs();
+
+        ImageLoader.getInstance().init(config.build());
     }
 
     public static Context getContext() {

@@ -81,22 +81,26 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
     private void initInfo() {
         MLDBHelper mldbHelper = MLDBHelper.getInstance();
         if (mldbHelper == null) {
-            MLToast.makeToast(R.mipmap.icon_emotion_sad_24dp,
-                    mActivity.getResources().getString(R.string.ml_hello)).show();
-            Intent intent = new Intent();
-            intent.setClass(mActivity, MLSignActivity.class);
-            startActivity(intent);
+            mlCallback.mlClickListener(10);
             return;
         }
         String s1 = MLDBConstants.COL_ACCESS_TOKEN + "=?";
         String args1[] = new String[]{(String) MLSPUtil.get(mActivity, MLDBConstants.COL_ACCESS_TOKEN, "")};
         Cursor c1 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s1, args1, null, null, null, null);
-        mUserInfo = new UserInfo(c1);
+        if (c1.moveToFirst()) {
+            do {
+                mUserInfo = new UserInfo(c1);
+            } while (c1.moveToNext());
+        }
 
         String s2 = MLDBConstants.COL_USER_ID + "=?";
         String args2[] = new String[]{mUserInfo.getSpouseId()};
         Cursor c2 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s2, args2, null, null, null, null);
-        mSpouseInfo = new UserInfo(c2);
+        if (c2.moveToFirst()) {
+            do {
+                mSpouseInfo = new UserInfo(c2);
+            } while (c2.moveToNext());
+        }
         mldbHelper.closeDatabase();
     }
 

@@ -40,8 +40,11 @@
     <color name="ml_text_blue">#ff4285F4</color>
     <color name="ml_text_white">#ffffffff</color>
     <color name="ml_text_gray_white">#ffebebeb</color>
-    <color name="ml_text_block">#ff232323</color>
-    <color name="ml_text_gray">#ff868686</color>
+    <color name="ml_text_block">#ff363636</color>
+    <color name="ml_text_gray">#ffa2a2a2</color>
+    <color name="ml_text_content_block">#ff333333</color>
+    <color name="ml_text_hint_gray_1">#ff999999</color>
+    <color name="ml_text_hint_gray_2">#ffaba49d</color>
 
     <!--背景色-->
     <color name="ml_bg_blue">#7f239efe</color>

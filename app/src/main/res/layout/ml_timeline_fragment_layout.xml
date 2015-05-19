@@ -7,7 +7,15 @@
     <View
         android:layout_width="@dimen/ml_dimen_2"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
         android:layout_marginLeft="@dimen/ml_dimen_26"
+        android:background="@color/ml_bg_white" />
+
+    <View
+        android:layout_width="@dimen/ml_dimen_2"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/ml_dimen_26"
         android:background="@color/ml_bg_white" />
 
     <LinearLayout
@@ -27,8 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipChildren="false"
-                android:divider="@color/ml_bg_view_divider"
-                android:dividerHeight="@dimen/ml_dimen_px_1"
+                android:divider="@color/ml_transparent"
+                android:dividerHeight="@dimen/ml_dimen_0"
                 android:listSelector="@color/ml_transparent">
 
             </ListView>

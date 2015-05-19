@@ -1,5 +1,7 @@
 package net.melove.app.ml.info;
 
+import android.database.Cursor;
+
 import net.melove.app.ml.db.MLDBConstants;
 
 import org.json.JSONException;
@@ -19,6 +21,7 @@ public class NoteInfo {
      */
     private String loveId;
     private String userId;
+    private UserInfo userInfo;
     private String noteId;
     private String noteType;
     private String image;
@@ -49,12 +52,26 @@ public class NoteInfo {
         this.createAt = note.getString(MLDBConstants.COL_CREATE_AT);
     }
 
+    public NoteInfo(Cursor cursor) {
+        this.setLoveId(cursor.getString(0));
+        this.setUserId(cursor.getString(1));
+        this.setNoteId(cursor.getString(2));
+        this.setNoteType(cursor.getString(3));
+        this.setImage(cursor.getString(4));
+        this.setContent(cursor.getString(5));
+        this.setCreateAt(cursor.getString(6));
+    }
+
     public void setLoveId(String loveId) {
         this.loveId = loveId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public void setUserInfo(UserInfo userInfo){
+        this.userInfo = userInfo;
     }
 
     public void setNoteId(String noteId) {
@@ -84,6 +101,10 @@ public class NoteInfo {
 
     public String getUserId() {
         return userId;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
     public String getNoteId() {

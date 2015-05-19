@@ -74,26 +74,22 @@ public class UserInfo {
     }
 
     public UserInfo(Cursor cursor) {
-        if (cursor.moveToFirst()) {
-            do {
-                this.loveId = cursor.getString(0);
-                this.spouseId = cursor.getString(1);
-                this.userId = cursor.getString(2);
-                this.signinname = cursor.getString(3);
-                this.email = cursor.getString(4);
-                this.nickname = cursor.getString(5);
-                this.avatar = cursor.getString(6);
-                this.cover = cursor.getString(7);
-                this.gender = cursor.getInt(8);
-                this.location = cursor.getString(9);
-                this.signature = cursor.getString(10);
-                this.noteCount = cursor.getInt(11);
-                this.replyCount = cursor.getInt(12);
-                this.createAt = cursor.getString(13);
-                this.updateAt = cursor.getString(14);
-                this.accessToken = cursor.getString(15);
-            } while (cursor.moveToNext());
-        }
+        this.loveId = cursor.getString(0);
+        this.spouseId = cursor.getString(1);
+        this.userId = cursor.getString(2);
+        this.signinname = cursor.getString(3);
+        this.email = cursor.getString(4);
+        this.nickname = cursor.getString(5);
+        this.avatar = cursor.getString(6);
+        this.cover = cursor.getString(7);
+        this.gender = cursor.getInt(8);
+        this.location = cursor.getString(9);
+        this.signature = cursor.getString(10);
+        this.noteCount = cursor.getInt(11);
+        this.replyCount = cursor.getInt(12);
+        this.createAt = cursor.getString(13);
+        this.updateAt = cursor.getString(14);
+        this.accessToken = cursor.getString(15);
     }
 
     public void changeInfo() {

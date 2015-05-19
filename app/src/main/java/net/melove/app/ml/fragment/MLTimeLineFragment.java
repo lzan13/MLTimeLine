@@ -19,6 +19,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
+
 import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
 import net.melove.app.ml.activity.MLNotePutActivity;
@@ -93,12 +96,20 @@ public class MLTimeLineFragment extends MLBaseFragment {
         String s1 = MLDBConstants.COL_ACCESS_TOKEN + "=?";
         String args1[] = new String[]{(String) MLSPUtil.get(mActivity, MLDBConstants.COL_ACCESS_TOKEN, "")};
         Cursor c1 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s1, args1, null, null, null, null);
-        mUserInfo = new UserInfo(c1);
+        if (c1.moveToFirst()) {
+            do {
+                mUserInfo = new UserInfo(c1);
+            } while (c1.moveToNext());
+        }
 
         String s2 = MLDBConstants.COL_USER_ID + "=?";
         String args2[] = new String[]{mUserInfo.getSpouseId()};
         Cursor c2 = mldbHelper.queryData(MLDBConstants.TB_USER, null, s2, args2, null, null, null, null);
-        mSpouseInfo = new UserInfo(c2);
+        if (c2.moveToFirst()) {
+            do {
+                mSpouseInfo = new UserInfo(c2);
+            } while (c2.moveToNext());
+        }
         mldbHelper.closeDatabase();
     }
 
@@ -214,14 +225,12 @@ public class MLTimeLineFragment extends MLBaseFragment {
                 Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_NOTE, null, selection, args, null, null, null, null);
                 if (cursor.moveToFirst()) {
                     do {
-                        NoteInfo temp = new NoteInfo();
-                        temp.setLoveId(cursor.getString(0));
-                        temp.setUserId(cursor.getString(1));
-                        temp.setNoteId(cursor.getString(2));
-                        temp.setNoteType(cursor.getString(3));
-                        temp.setImage(cursor.getString(4));
-                        temp.setContent(cursor.getString(5));
-                        temp.setCreateAt(cursor.getString(6));
+                        NoteInfo temp = new NoteInfo(cursor);
+                        if (temp.getUserId().equals(mUserInfo.getUserId())) {
+                            temp.setUserInfo(mUserInfo);
+                        } else {
+                            temp.setUserInfo(mSpouseInfo);
+                        }
                         noteInfoList.add(temp);
                     } while (cursor.moveToNext());
                 }
@@ -235,7 +244,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
         }
 
         mListView.setAdapter(new MLTimeLineAdapter(mActivity, noteInfoList));
-
+        mListView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
     }
 
     @Override
