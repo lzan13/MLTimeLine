@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
@@ -23,6 +25,7 @@ import net.melove.app.ml.http.MLHttpConstants;
 import net.melove.app.ml.info.NoteInfo;
 import net.melove.app.ml.utils.MLDate;
 import net.melove.app.ml.utils.MLFile;
+import net.melove.app.ml.utils.MLScreen;
 import net.melove.app.ml.views.MLImageView;
 
 import java.util.List;
@@ -92,19 +95,23 @@ public class MLTimeLineAdapter extends BaseAdapter {
         mlItem.timeTextView.setText(MLDate.formatDate(noteInfo.getCreateAt()));
         mlItem.contentTextView.setText(noteInfo.getContent());
 
-
         mlItem.imageView.setTag(MLHttpConstants.UPLOAD_URL + MLHttpConstants.IMAGE_URL + noteInfo.getImage());
         if (noteInfo.getNoteType().equals("image")) {
+            int imageWidth = MLScreen.getImageSize(noteInfo.getImage()).x;
+            int imageHeight = MLScreen.getImageSize(noteInfo.getImage()).y;
+
+            int width = MLScreen.getScreenSize().x - MLScreen.dp2px(R.dimen.ml_dimen_16);
+            int height = width * imageHeight / imageWidth;
+
+            mlItem.imageView.setLayoutParams(new LinearLayout.LayoutParams(width, height));
+
             mlItem.imageView.setVisibility(View.VISIBLE);
-            final ImageView imageView = mlItem.imageView;
             String url = MLHttpConstants.UPLOAD_URL + MLHttpConstants.IMAGE_URL + noteInfo.getImage();
-            ImageLoader.getInstance().displayImage(url, mlItem.imageView);
+            ImageLoader.getInstance().displayImage(url, mlItem.imageView, options);
         } else {
             mlItem.imageView.setVisibility(View.GONE);
         }
-
 //        mlItem.getReplyListView().setAdapter();
-
         return convertView;
     }
 

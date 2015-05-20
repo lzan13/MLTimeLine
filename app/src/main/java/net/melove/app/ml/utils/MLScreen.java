@@ -1,7 +1,11 @@
 package net.melove.app.ml.utils;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.util.TypedValue;
+import android.view.Display;
+import android.view.WindowManager;
 
 import net.melove.app.ml.MLApp;
 
@@ -20,6 +24,22 @@ public class MLScreen {
 
     public MLScreen() {
 
+    }
+
+    public static Point getScreenSize() {
+        WindowManager wm = (WindowManager) MLApp.getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point outSize = new Point();
+        display.getSize(outSize);
+        return outSize;
+    }
+
+    public static Point getImageSize(String str) {
+        String wh = str.substring(str.indexOf(".") + 1, str.lastIndexOf("."));
+        String w = wh.substring(0, wh.indexOf("."));
+        String h = wh.substring(wh.indexOf(".") + 1);
+        Point outSize = new Point(Integer.valueOf(w), Integer.valueOf(h));
+        return outSize;
     }
 
     /**

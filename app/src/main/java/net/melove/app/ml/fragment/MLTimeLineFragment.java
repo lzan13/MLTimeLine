@@ -242,9 +242,8 @@ public class MLTimeLineFragment extends MLBaseFragment {
             ViewStub viewStub = (ViewStub) mFooterView.findViewById(R.id.ml_empty_viewstub);
             viewStub.inflate();
         }
-
-        mListView.setAdapter(new MLTimeLineAdapter(mActivity, noteInfoList));
         mListView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
+        mListView.setAdapter(new MLTimeLineAdapter(mActivity, noteInfoList));
     }
 
     @Override

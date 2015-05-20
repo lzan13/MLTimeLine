@@ -582,13 +582,14 @@ public class MLUserActivity extends MLBaseActivity {
                         UserInfo userInfo = new UserInfo(user);
                         userInfo.changeInfo();
 
+                        Message msg = mHandler.obtainMessage();
                         if (isAvatar) {
+                            msg.what = 0;
                             str = mActivity.getResources().getString(R.string.ml_user_avatar_change_success);
                         } else {
+                            msg.what = 1;
                             str = mActivity.getResources().getString(R.string.ml_user_cover_change_success);
                         }
-                        Message msg = mHandler.obtainMessage();
-                        msg.what = 0;
                         msg.sendToTarget();
                         MLToast.makeToast(R.mipmap.icon_emotion_smile_24dp, str).show();
                     } else {
@@ -879,9 +880,10 @@ public class MLUserActivity extends MLBaseActivity {
             switch (what) {
                 case 0:
                     mUserAvatar.setImageBitmap(BitmapFactory.decodeFile(MLApp.getUserImage() + mUserInfo.getAvatar()));
+                    break;
+                case 1:
                     mUserCover.setImageBitmap(BitmapFactory.decodeFile(MLApp.getUserImage() + mUserInfo.getCover()));
                     break;
-
             }
         }
     };

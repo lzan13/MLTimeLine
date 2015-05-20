@@ -22,6 +22,7 @@ public class MLFile {
 
     /**
      * 判断目录是否存在
+     *
      * @param path
      * @return
      */
@@ -32,6 +33,7 @@ public class MLFile {
 
     /**
      * 创建目录，多层目录会递归创建
+     *
      * @param path
      */
     public static boolean createDirectory(String path) {
@@ -44,11 +46,12 @@ public class MLFile {
 
     /**
      * 创建新文件
+     *
      * @param filepath
      * @return
      * @throws IOException
      */
-    public static boolean createFile(String filepath){
+    public static boolean createFile(String filepath) {
         boolean isSuccess = false;
         File file = new File(filepath);
         // 判断文件上层目录是否存在，不存在则首先创建目录
@@ -67,6 +70,7 @@ public class MLFile {
 
     /**
      * 复制文件
+     *
      * @param filepath1
      * @param filepath2
      * @return
@@ -103,12 +107,13 @@ public class MLFile {
 
     /**
      * 读取文件到 Bitmap
+     *
      * @param filepath
      * @return
      */
-    public static Bitmap fileToBitmap(String filepath){
+    public static Bitmap fileToBitmap(String filepath) {
         File file = new File(filepath);
-        if(file.exists()) {
+        if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(filepath);
             return bitmap;
         }
@@ -117,7 +122,7 @@ public class MLFile {
 
     public static Drawable fileToDrawable(String filepath) {
         File file = new File(filepath);
-        if(file.exists()) {
+        if (file.exists()) {
             Drawable drawable = Drawable.createFromPath(filepath);
             return drawable;
         }
@@ -126,10 +131,11 @@ public class MLFile {
 
     /**
      * 保存Bitmap到SD卡
+     *
      * @param bitmap
      * @param path
      */
-    public static void saveBitmapToSDCard(Bitmap bitmap, String path){
+    public static void saveBitmapToSDCard(Bitmap bitmap, String path) {
         OutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(path);
@@ -140,6 +146,26 @@ public class MLFile {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 根据传入的路径，获取图片的宽高
+     *
+     * @param filepath
+     * @return
+     */
+    public static String getImageSize(String filepath) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        // 开始读入图片，此时把options.inJustDecodeBounds 设为true了
+        // 这个参数的意义是仅仅解析边缘区域，从而可以得到图片的一些信息，比如大小，而不会整个解析图片，防止OOM
+        options.inJustDecodeBounds = true;
+
+        // 此时bitmap还是为空的
+        Bitmap bitmap = BitmapFactory.decodeFile(filepath, options);
+
+        int actualWidth = options.outWidth;
+        int actualHeight = options.outHeight;
+        return actualWidth + "." + actualHeight;
     }
 
 
@@ -159,9 +185,9 @@ public class MLFile {
         }
     }
 
-    /*
-	 * 判断sdcard是否被挂载
-	 */
+    /**
+     * 判断sdcard是否被挂载
+     */
     public static boolean hasSdcard() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             return true;

@@ -5,13 +5,14 @@ package net.melove.app.ml.http;
  */
 public class MLHttpConstants {
 
+    public static final String URL = "http://192.168.1.102:5121";
 
-    public static final String UPLOAD_URL = "http://ml.melove.net/upload/";
+    public static final String UPLOAD_URL = URL + "/upload/";
     public static final String IMAGE_URL = "images/";
     public static final String VIDEO_URL = "videos/";
 
     // ML timeline api
-    public static final String API_URL = "http://ml.melove.net/api/v1";
+    public static final String API_URL = URL + "/api/v1";
     public static final String API_SIGNIN = "/signin";
     public static final String API_SIGNUP = "/signup";
 

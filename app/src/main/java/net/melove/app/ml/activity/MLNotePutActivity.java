@@ -244,7 +244,6 @@ public class MLNotePutActivity extends MLBaseActivity {
         if (mUserInfo.getLoveId().equals("null") || mUserInfo.getLoveId().equals("") || mUserInfo.getLoveId() == null) {
             MLToast.makeToast(R.mipmap.icon_emotion_sad_24dp,
                     mActivity.getResources().getString(R.string.ml_spouse_not_null)).show();
-
             Intent intent = new Intent();
             intent.setClass(mActivity, MLUserActivity.class);
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeCustomAnimation(mActivity,
@@ -255,7 +254,7 @@ public class MLNotePutActivity extends MLBaseActivity {
         }
         String dateTime = MLDate.getCurrentDate();
         String srcPath = MLApp.getTemp() + MLAppConstant.ML_TEMP_PHOTO;
-        String destPath = MLApp.getImage() + MLCrypto.cryptoStr2MD5(dateTime) + ".jpg";
+        String destPath = MLApp.getImage() + MLCrypto.cryptoStr2MD5(dateTime) + "." + MLFile.getImageSize(srcPath) + ".jpg";
         String content = mNoteContentView.getText().toString();
         if (MLFile.copyFile(srcPath, destPath)) {
 
