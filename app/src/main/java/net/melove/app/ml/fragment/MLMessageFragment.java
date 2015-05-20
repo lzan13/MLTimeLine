@@ -168,10 +168,10 @@ public class MLMessageFragment extends MLBaseFragment {
                     MessageInfo messageInfo = new MessageInfo(message);
 
                     ContentValues values = new ContentValues();
-                    values.put(MLDBConstants.COL_LOVE_ID, messageInfo.getSendUserId());
-                    values.put(MLDBConstants.COL_USER_ID, messageInfo.getReceiveUserId());
-                    values.put(MLDBConstants.COL_NOTE_ID, messageInfo.getMessageId());
-                    values.put(MLDBConstants.COL_NOTE_TYPE, messageInfo.getMessageType());
+                    values.put(MLDBConstants.COL_SEND_USER_ID, messageInfo.getSendUserId());
+                    values.put(MLDBConstants.COL_RECEIVE_USER_ID, messageInfo.getReceiveUserId());
+                    values.put(MLDBConstants.COL_MESSAGE_ID, messageInfo.getMessageId());
+                    values.put(MLDBConstants.COL_MESSAGE_TYPE, messageInfo.getMessageType());
                     values.put(MLDBConstants.COL_CONTENT, messageInfo.getContent());
                     values.put(MLDBConstants.COL_STATE, messageInfo.getState());
                     values.put(MLDBConstants.COL_CREATE_AT, messageInfo.getCreateAt());
@@ -219,7 +219,10 @@ public class MLMessageFragment extends MLBaseFragment {
                     temp.setReceiveUserId(cursor.getString(1));
                     temp.setMessageId(cursor.getString(2));
                     temp.setMessageType(cursor.getString(3));
-                    temp.setContent(cursor.getString(4));
+                    String content = cursor.getString(4)
+                            .replace(mUserInfo.getSigninname(), mUserInfo.getNickname())
+                            .replace(mSpouseInfo.getSigninname(), mSpouseInfo.getNickname());
+                    temp.setContent(content);
                     temp.setState(cursor.getInt(5));
                     temp.setCreateAt(cursor.getString(6));
                     mMessageInfoList.add(temp);
@@ -256,8 +259,8 @@ public class MLMessageFragment extends MLBaseFragment {
                 } while (cursor.moveToNext());
             }
         }
-
         mldbHelper.closeDatabase();
+
         mlMessageAdapter.notifyDataSetChanged();
     }
 

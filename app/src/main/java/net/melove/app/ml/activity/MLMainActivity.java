@@ -18,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,6 +44,7 @@ import net.melove.app.ml.views.MLToast;
 public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLFragmentCallback {
 
     private Activity mActivity;
+    private MLSystemBarManager mlManager;
 
     private int mMenuType;
     private Intent mIntent;
@@ -50,10 +52,11 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
     private int mCurrentIndex;
 
     private Toolbar mToolbar;
-
     public DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private MLSystemBarManager mlManager;
+    private boolean isDrawerOpen;
+
+    private MLDrawerLeftFragment mlDrawerLeftFragment;
 
 
     @Override
@@ -93,7 +96,8 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
     private void initFragment() {
         // 侧滑菜单Fragment
         FragmentTransaction ftd = getFragmentManager().beginTransaction();
-        ftd.replace(R.id.ml_fragment_drawer_left, new MLDrawerLeftFragment());
+        mlDrawerLeftFragment = new MLDrawerLeftFragment();
+        ftd.replace(R.id.ml_fragment_drawer_left, mlDrawerLeftFragment);
         ftd.commit();
 
         // 主Activity 默认显示 TimeLineFragment
@@ -129,8 +133,8 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                MLLog.i("drawer opened");
                 mMenuType = -1;
+                isDrawerOpen = true;
             }
 
             @Override
@@ -152,17 +156,16 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
                     default:
                         break;
                 }
+                isDrawerOpen = false;
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
                 super.onDrawerStateChanged(newState);
-//                MLLog.i("drawler state." + newState);
             }
         };
         mDrawerToggle.syncState();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
 
         // 当toolbar单独使用是需要手动加载menu
 //        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
@@ -251,4 +254,24 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (isDrawerOpen) {
+                mDrawerLayout.closeDrawer(Gravity.START);
+            } else if (mCurrentIndex != 0) {
+                mCurrentIndex = 0;
+                mCurrentFragment = new MLTimeLineFragment();
+                mToolbar.setTitle(mActivity.getResources().getString(R.string.ml_timeline));
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.ml_fragment_container, mCurrentFragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.commit();
+                mlDrawerLeftFragment.getmListView().setItemChecked(0, true);
+            } else {
+                return super.onKeyDown(keyCode, event);
+            }
+        }
+        return true;
+    }
 }

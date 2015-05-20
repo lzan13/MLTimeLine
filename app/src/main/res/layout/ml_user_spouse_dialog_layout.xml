@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:melove="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ml_bg_timeline_white"
+    tools:context=".MLMainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false">
+
+            <net.melove.app.ml.views.MLFilterImageView
+                android:id="@+id/ml_img_user_spouse_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ml_dimen_0"
+                android:layout_marginRight="@dimen/ml_dimen_0"
+                android:layout_marginTop="@dimen/ml_dimen_0"
+                android:adjustViewBounds="true"
+                android:paddingBottom="@dimen/ml_dimen_16"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_top"
+                melove:filter_color="@color/ml_filter_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/ml_img_user_spouse_cover"
+                android:layout_centerHorizontal="true"
+                android:clipChildren="false"
+                android:gravity="center_horizontal|bottom"
+                android:orientation="horizontal">
+
+                <net.melove.app.ml.views.MLImageView
+                    android:id="@+id/ml_img_spouse_dialog_avatar"
+                    android:layout_width="@dimen/ml_dimen_72"
+                    android:layout_height="@dimen/ml_dimen_72"
+                    android:src="@mipmap/icon_avatar_default"
+                    melove:border_color="@color/ml_bg_timeline_white"
+                    melove:border_width="@dimen/ml_dimen_4"
+                    melove:press_alpha="20"
+                    melove:press_color="@color/ml_view_press_red"
+                    melove:radius="@dimen/ml_dimen_8"
+                    melove:shape_type="rectangle" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:orientation="vertical"
+            android:padding="@dimen/ml_dimen_16">
+
+
+            <TextView
+                android:id="@+id/ml_text_user_spouse_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ml_dimen_48"
+                android:background="@color/ml_transparent"
+                android:gravity="center"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:text="@string/ml_hello"
+                android:textColor="@color/ml_text_block"
+                android:textSize="@dimen/ml_size_16" />
+
+            <TextView
+                android:id="@+id/ml_text_user_spouse_signature"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ml_dimen_48"
+                android:background="@color/ml_transparent"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/ml_hello"
+                android:textColor="@color/ml_text_block"
+                android:textSize="@dimen/ml_size_16" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/ml_text_user_spouse_location"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/ml_dimen_48"-->
+            <!--android:background="@color/ml_transparent"-->
+            <!--android:gravity="center"-->
+            <!--android:singleLine="true"-->
+            <!--android:text="@string/ml_hello"-->
+            <!--android:textColor="@color/ml_text_block"-->
+            <!--android:textSize="@dimen/ml_size_16" />-->
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

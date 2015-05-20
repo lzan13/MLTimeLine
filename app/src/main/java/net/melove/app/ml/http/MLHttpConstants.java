@@ -5,7 +5,8 @@ package net.melove.app.ml.http;
  */
 public class MLHttpConstants {
 
-    public static final String URL = "http://192.168.1.102:5121";
+//    public static final String URL = "http://192.168.1.102:5121";
+    public static final String URL = "http://ml.melove.net";
 
     public static final String UPLOAD_URL = URL + "/upload/";
     public static final String IMAGE_URL = "images/";

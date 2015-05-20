@@ -15,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
 import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
 import net.melove.app.ml.activity.MLSignActivity;
@@ -22,6 +25,7 @@ import net.melove.app.ml.adapter.MLDrawerLeftAdapter;
 import net.melove.app.ml.constants.MLAppConstant;
 import net.melove.app.ml.db.MLDBConstants;
 import net.melove.app.ml.db.MLDBHelper;
+import net.melove.app.ml.http.MLHttpConstants;
 import net.melove.app.ml.info.UserInfo;
 import net.melove.app.ml.utils.MLFile;
 import net.melove.app.ml.utils.MLSPUtil;
@@ -39,8 +43,8 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
     private Activity mActivity;
     private MLFragmentCallback mlCallback;
 
+    private MLDrawerLeftAdapter mlDrawerLeftAdapter;
 
-    private MLDrawerLeftAdapter mAdapter;
     private ListView mListView;
 
     private UserInfo mUserInfo;
@@ -112,37 +116,77 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
         mSignature = (TextView) view.findViewById(R.id.ml_text_drawer_user_signature);
 
         if (mUserInfo != null) {
-            if (!mUserInfo.getCover().equals(null)) {
+            if (!mUserInfo.getCover().equals("null")) {
                 String userCoverPath = MLApp.getUserImage() + mUserInfo.getCover();
                 Bitmap cover = MLFile.fileToBitmap(userCoverPath);
                 if (cover != null) {
                     mUserCover.setImageBitmap(cover);
+                } else {
+                    String url = MLHttpConstants.UPLOAD_URL + mUserInfo.getSigninname()
+                            + "/" + MLHttpConstants.IMAGE_URL + mUserInfo.getCover();
+                    ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            super.onLoadingComplete(imageUri, view, loadedImage);
+                            if (loadedImage != null) {
+                                mUserCover.setImageBitmap(loadedImage);
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getCover());
+
+                            }
+                        }
+                    });
                 }
             }
-            if (!mUserInfo.getAvatar().equals(null)) {
+            if (!mUserInfo.getAvatar().equals("null")) {
                 String userAvatarPath = MLApp.getUserImage() + mUserInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(userAvatarPath);
                 if (avatar != null) {
                     mUserAvatar.setImageBitmap(avatar);
+                } else {
+                    String url = MLHttpConstants.UPLOAD_URL + mUserInfo.getSigninname()
+                            + "/" + MLHttpConstants.IMAGE_URL + mUserInfo.getAvatar();
+                    ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            super.onLoadingComplete(imageUri, view, loadedImage);
+                            if (loadedImage != null) {
+                                mUserAvatar.setImageBitmap(loadedImage);
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getAvatar());
+                            }
+                        }
+                    });
                 }
             }
             mNickname.setText(mUserInfo.getNickname());
             mSignature.setText(mUserInfo.getSignature());
         }
         if (mSpouseInfo != null) {
-            if (mSpouseInfo.getAvatar() != null) {
+            if (!mSpouseInfo.getAvatar().equals("null")) {
                 String spouseAvatarPath = MLApp.getUserImage() + mSpouseInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(spouseAvatarPath);
                 if (avatar != null) {
                     mSpouseAvatar.setImageBitmap(avatar);
+                } else {
+                    String url = MLHttpConstants.UPLOAD_URL + mSpouseInfo.getSigninname()
+                            + "/" + MLHttpConstants.IMAGE_URL + mSpouseInfo.getAvatar();
+                    ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            super.onLoadingComplete(imageUri, view, loadedImage);
+                            if (loadedImage != null) {
+                                mSpouseAvatar.setImageBitmap(loadedImage);
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mSpouseInfo.getAvatar());
+                            }
+                        }
+                    });
                 }
             }
         }
         mUserAvatar.setOnClickListener(viewListener);
 
         mListView = (ListView) view.findViewById(R.id.ml_drawer_menu_listview);
-        mAdapter = new MLDrawerLeftAdapter(getActivity());
-        mListView.setAdapter(mAdapter);
+        mlDrawerLeftAdapter = new MLDrawerLeftAdapter(getActivity());
+        mListView.setAdapter(mlDrawerLeftAdapter);
         mListView.setItemChecked(0, true);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -172,4 +216,7 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
         mlCallback = (MLFragmentCallback) activity;
     }
 
+    public ListView getmListView() {
+        return mListView;
+    }
 }

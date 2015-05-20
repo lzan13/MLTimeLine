@@ -16,7 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/xml'] } }
+    sourceSets {
+        main { res.srcDirs = ['src/main/res', 'src/main/res/xml', 'src/main/res/drawable-nodpi'] }
+    }
     productFlavors {
     }
     // 解决重复加载jar问题

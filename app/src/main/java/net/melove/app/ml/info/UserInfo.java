@@ -34,23 +34,8 @@ public class UserInfo {
     private String accessToken;
 
 
-    public UserInfo(String loveId, String userId, String spouseId, String signinname, String nickname, String email, String avatar, String cover, int gender, String location, String signature, int replyCount, int noteCount, String createAt, String updateAt, String accessToken) {
-        this.loveId = loveId;
-        this.userId = userId;
-        this.spouseId = spouseId;
-        this.signinname = signinname;
-        this.nickname = nickname;
-        this.email = email;
-        this.avatar = avatar;
-        this.cover = cover;
-        this.gender = gender;
-        this.location = location;
-        this.signature = signature;
-        this.replyCount = replyCount;
-        this.noteCount = noteCount;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-        this.accessToken = accessToken;
+    public UserInfo() {
+
     }
 
     public UserInfo(JSONObject user) throws JSONException {
@@ -146,10 +131,9 @@ public class UserInfo {
         this.avatar = avatar;
     }
 
-    public String getCover() {
-        return cover;
+    public void setCover(String cover) {
+        this.cover = cover;
     }
-
 
     public void setGender(int gender) {
         this.gender = gender;
@@ -212,8 +196,8 @@ public class UserInfo {
         return avatar;
     }
 
-    public void setCover(String cover) {
-        this.cover = cover;
+    public String getCover() {
+        return cover;
     }
 
     public int getGender() {

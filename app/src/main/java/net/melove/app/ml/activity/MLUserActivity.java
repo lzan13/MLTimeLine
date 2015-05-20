@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -20,6 +21,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
@@ -32,6 +34,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
@@ -265,27 +270,66 @@ public class MLUserActivity extends MLBaseActivity {
      */
     private void showUserInfo() {
         if (mUserInfo != null) {
-            if (!mUserInfo.getCover().equals(null)) {
+            if (!mUserInfo.getCover().equals("null")) {
                 String userCoverPath = MLApp.getUserImage() + mUserInfo.getCover();
                 Bitmap cover = MLFile.fileToBitmap(userCoverPath);
                 if (cover != null) {
                     mUserCover.setImageBitmap(cover);
+                } else {
+                    String url = MLHttpConstants.UPLOAD_URL + mUserInfo.getSigninname()
+                            + "/" + MLHttpConstants.IMAGE_URL + mUserInfo.getCover();
+                    ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            super.onLoadingComplete(imageUri, view, loadedImage);
+                            if (loadedImage != null) {
+                                mUserCover.setImageBitmap(loadedImage);
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getCover());
+                            }
+                        }
+                    });
                 }
             }
-            if (!mUserInfo.getAvatar().equals(null)) {
+            if (!mUserInfo.getAvatar().equals("null")) {
                 String userAvatarPath = MLApp.getUserImage() + mUserInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(userAvatarPath);
                 if (avatar != null) {
                     mUserAvatar.setImageBitmap(avatar);
+                } else {
+                    String url = MLHttpConstants.UPLOAD_URL + mUserInfo.getSigninname()
+                            + "/" + MLHttpConstants.IMAGE_URL + mUserInfo.getAvatar();
+                    ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            super.onLoadingComplete(imageUri, view, loadedImage);
+                            if (loadedImage != null) {
+                                mUserAvatar.setImageBitmap(loadedImage);
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getAvatar());
+                            }
+                        }
+                    });
                 }
             }
         }
         if (mSpouseInfo != null) {
-            if (mSpouseInfo.getAvatar() != null) {
+            if (!mSpouseInfo.getAvatar().equals("null")) {
                 String spouseAvatarPath = MLApp.getUserImage() + mSpouseInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(spouseAvatarPath);
                 if (avatar != null) {
                     mSpouseAvatar.setImageBitmap(avatar);
+                } else {
+                    String url = MLHttpConstants.UPLOAD_URL + mSpouseInfo.getSigninname()
+                            + "/" + MLHttpConstants.IMAGE_URL + mSpouseInfo.getAvatar();
+                    ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            super.onLoadingComplete(imageUri, view, loadedImage);
+                            if (loadedImage != null) {
+                                mSpouseAvatar.setImageBitmap(loadedImage);
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mSpouseInfo.getAvatar());
+                            }
+                        }
+                    });
                 }
             }
         }
@@ -474,6 +518,11 @@ public class MLUserActivity extends MLBaseActivity {
                             mActivity.getResources().getString(R.string.ml_toast_not_null)).show();
                     return;
                 }
+                if (spouseId.equals(mUserInfo.getUserId()) || spouseId.equals(mUserInfo.getSigninname())) {
+                    MLToast.makeToast(R.mipmap.icon_emotion_sad_24dp,
+                            mActivity.getResources().getString(R.string.ml_spouse_not_self)).show();
+                    return;
+                }
                 MLRequestParams params = new MLRequestParams();
                 params.putParams(MLDBConstants.COL_SPOUSE_ID, spouseId);
                 params.putParams(MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
@@ -496,6 +545,49 @@ public class MLUserActivity extends MLBaseActivity {
             }
         });
         addSpouseDialog.show();
+    }
+
+    private void showSpouse() {
+        AppCompatDialog spouseDialog = new AppCompatDialog(mActivity);
+        View view = mActivity.getLayoutInflater().inflate(R.layout.ml_user_spouse_dialog_layout, null);
+        final MLFilterImageView spouseCover = (MLFilterImageView) view.findViewById(R.id.ml_img_user_spouse_cover);
+        MLImageView spouseAvatar = (MLImageView) view.findViewById(R.id.ml_img_spouse_dialog_avatar);
+        TextView spouseNickname = (TextView) view.findViewById(R.id.ml_text_user_spouse_nickname);
+        TextView spouseSignature = (TextView) view.findViewById(R.id.ml_text_user_spouse_signature);
+
+        if (!mSpouseInfo.getCover().equals("null")) {
+            String spouseCoverPath = MLApp.getUserImage() + mSpouseInfo.getCover();
+            Bitmap avatar = MLFile.fileToBitmap(spouseCoverPath);
+            if (avatar != null) {
+                spouseCover.setImageBitmap(avatar);
+            } else {
+                String url = MLHttpConstants.UPLOAD_URL + mSpouseInfo.getSigninname()
+                        + "/" + MLHttpConstants.IMAGE_URL + mSpouseInfo.getCover();
+                ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
+                    @Override
+                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                        super.onLoadingComplete(imageUri, view, loadedImage);
+                        if (loadedImage != null) {
+                            spouseCover.setImageBitmap(loadedImage);
+                            MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mSpouseInfo.getCover());
+                        }
+                    }
+                });
+            }
+        }
+        if (!mSpouseInfo.getAvatar().equals("null")) {
+            String spouseAvatarPath = MLApp.getUserImage() + mSpouseInfo.getAvatar();
+            Bitmap avatar = MLFile.fileToBitmap(spouseAvatarPath);
+            if (avatar != null) {
+                spouseAvatar.setImageBitmap(avatar);
+            }
+        }
+
+        spouseNickname.setText(mSpouseInfo.getNickname());
+        spouseSignature.setText(mSpouseInfo.getSignature());
+
+        spouseDialog.setContentView(view);
+        spouseDialog.show();
     }
 
     /**
@@ -579,9 +671,8 @@ public class MLUserActivity extends MLBaseActivity {
                     JSONObject jsonObject = new JSONObject(content);
                     if (jsonObject.isNull("error")) {
                         JSONObject user = jsonObject.getJSONObject("user");
-                        UserInfo userInfo = new UserInfo(user);
-                        userInfo.changeInfo();
-
+                        mUserInfo = new UserInfo(user);
+                        mUserInfo.changeInfo();
                         Message msg = mHandler.obtainMessage();
                         if (isAvatar) {
                             msg.what = 0;
@@ -759,6 +850,8 @@ public class MLUserActivity extends MLBaseActivity {
                 case R.id.ml_img_spouse_avatar:
                     if (mUserInfo.getSpouseId().equals("null")) {
                         setSpouse();
+                    } else {
+                        showSpouse();
                     }
                     break;
                 case R.id.ml_img_user_cover:

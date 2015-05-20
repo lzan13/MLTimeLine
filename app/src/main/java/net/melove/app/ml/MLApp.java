@@ -13,6 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.io.File;
 
@@ -45,10 +46,12 @@ public class MLApp extends Application {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .considerExifParams(true)
+                .displayer(new FadeInBitmapDisplayer(500))
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .resetViewBeforeLoading(false)
-                .showImageForEmptyUri(R.mipmap.bg_top)
-                .showImageOnLoading(R.mipmap.bg_top)
+                .showImageForEmptyUri(R.mipmap.bg_transparent_gray)
+                .showImageOnLoading(R.mipmap.bg_transparent_gray)
+                .showImageOnFail(R.mipmap.bg_transparent_gray)
                 .build();
 
         // Create global configuration and initialize ImageLoader with this config

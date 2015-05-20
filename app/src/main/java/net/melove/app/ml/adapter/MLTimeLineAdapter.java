@@ -16,6 +16,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
@@ -50,10 +51,12 @@ public class MLTimeLineAdapter extends BaseAdapter {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .considerExifParams(true)
+                .displayer(new FadeInBitmapDisplayer(500))
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .resetViewBeforeLoading(true)
-                .showImageForEmptyUri(R.mipmap.bg_top)
-                .showImageOnLoading(R.mipmap.bg_top)
+                .showImageForEmptyUri(R.mipmap.bg_transparent_gray)
+                .showImageOnLoading(R.mipmap.bg_transparent_gray)
+                .showImageOnFail(R.mipmap.bg_transparent_gray)
                 .build();
     }
 
@@ -92,10 +95,9 @@ public class MLTimeLineAdapter extends BaseAdapter {
             mlItem.avatarView.setImageBitmap(avatar);
         }
         mlItem.nameTextView.setText(noteInfo.getUserInfo().getNickname());
-        mlItem.timeTextView.setText(MLDate.formatDate(noteInfo.getCreateAt()));
+        mlItem.timeTextView.setText(noteInfo.getCreateAt());
         mlItem.contentTextView.setText(noteInfo.getContent());
 
-        mlItem.imageView.setTag(MLHttpConstants.UPLOAD_URL + MLHttpConstants.IMAGE_URL + noteInfo.getImage());
         if (noteInfo.getNoteType().equals("image")) {
             int imageWidth = MLScreen.getImageSize(noteInfo.getImage()).x;
             int imageHeight = MLScreen.getImageSize(noteInfo.getImage()).y;

@@ -32,16 +32,6 @@ public class NoteInfo {
 
     }
 
-    public NoteInfo(String loveId, String userId, String noteId, String noteType, String image, String content, String createAt) {
-        this.loveId = loveId;
-        this.userId = userId;
-        this.noteId = noteId;
-        this.noteType = noteType;
-        this.image = image;
-        this.content = content;
-        this.createAt = createAt;
-    }
-
     public NoteInfo(JSONObject note) throws JSONException {
         this.loveId = note.getString(MLDBConstants.COL_LOVE_ID);
         this.userId = note.getString(MLDBConstants.COL_USER_ID);

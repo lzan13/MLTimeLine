@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/ml_dimen_8"
-        android:background="@mipmap/bg_note_bubble"
+        android:background="@mipmap/bg_note_card"
         android:clipChildren="false"
         android:orientation="vertical">
 
@@ -67,7 +67,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter" />
+                android:background="@mipmap/bg_transparent_gray"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/bg_transparent_gray" />
 
             <TextView
                 android:id="@+id/ml_text_note_content"
