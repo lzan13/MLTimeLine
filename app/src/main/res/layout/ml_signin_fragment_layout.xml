@@ -98,7 +98,7 @@
                     android:background="@drawable/ml_shape_bg_edittext_sign"
                     android:drawableLeft="@mipmap/icon_account_circle_gray_24dp"
                     android:drawablePadding="@dimen/ml_dimen_8"
-                    android:hint="@string/ml_hint_account_or_email"
+                    android:hint="@string/ml_account_or_email"
                     android:inputType="text"
                     android:maxLength="32"
                     android:paddingLeft="@dimen/ml_dimen_8"

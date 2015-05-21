@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:melove="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/ml_transparent"
+    android:clipChildren="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ml_dimen_8"
+        android:background="@mipmap/bg_note_card"
+        android:clipChildren="false"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ml_dimen_48"
+                android:layout_marginLeft="@dimen/ml_dimen_16"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ml_text_commemorate_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ml_hello"
+                    android:textColor="@color/ml_text_content_block"
+                    android:textSize="@dimen/ml_size_14" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/ml_btn_commemorate_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/ml_dimen_16"
+                android:background="@color/ml_transparent"
+                android:src="@mipmap/icon_edit_gray600_24dp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ml_dimen_px_1"
+            android:background="@color/ml_bg_view_divider" />
+
+        <LinearLayout
+            android:id="@+id/ml_layout_note_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ml_dimen_16"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ml_text_commemorate_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/ml_dimen_8"
+                android:text="@string/ml_hello"
+                android:textColor="@color/ml_text_content_block"
+                android:textSize="@dimen/ml_size_18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ml_text_commemorate_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/ml_dimen_8"
+                android:padding="@dimen/ml_dimen_4"
+                android:text="@string/ml_test_text"
+                android:textColor="@color/ml_text_block" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

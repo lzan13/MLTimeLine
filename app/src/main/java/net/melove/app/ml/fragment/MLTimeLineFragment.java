@@ -84,7 +84,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.ml_timeline_fragment_layout, container, false);
+        View view = inflater.inflate(R.layout.ml_note_timeline_fragment_layout, container, false);
 
         mActivity = getActivity();
 
@@ -135,8 +135,8 @@ public class MLTimeLineFragment extends MLBaseFragment {
 
     private void initFragment(View view) {
         mListView = (ListView) view.findViewById(R.id.ml_listview_timeline);
-        mHeadView = mActivity.getLayoutInflater().inflate(R.layout.ml_timeline_list_header, null);
-        mFooterView = mActivity.getLayoutInflater().inflate(R.layout.ml_timeline_list_footer, null);
+        mHeadView = mActivity.getLayoutInflater().inflate(R.layout.ml_note_timeline_list_header, null);
+        mFooterView = mActivity.getLayoutInflater().inflate(R.layout.ml_note_timeline_list_footer, null);
 
         mListView.addHeaderView(mHeadView);
         mListView.addFooterView(mFooterView);

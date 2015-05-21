@@ -39,7 +39,6 @@
     <string name="ml_delete_account_msg">确定要删除吗？\n确定删除也不行，暂不提供删除功能，可退出重新登陆！\n\n1.点击确认将退出当前账户！</string>
 
 
-    <string name="ml_hint_account_or_email">账户/邮箱</string>
     <string name="ml_spouse_add">添加另一半</string>
     <string name="ml_spouse_not_null">还没有另一半，不能发表，前往账户设置添加另一半</string>
     <string name="ml_spouse_nonentity">对方账户不存在，请确认</string>
@@ -49,8 +48,13 @@
     <string name="ml_spouse_send_id">UID已复制，可发送给另一半</string>
     <string name="ml_spouse_id_or_account">输入另一半的ID或账户</string>
 
+
+    <string name="ml_commemorate_day"></string>
+
+
     <string name="ml_id">U_ID</string>
     <string name="ml_account">账户</string>
+    <string name="ml_account_or_email">账户/邮箱</string>
     <string name="ml_email">邮箱</string>
     <string name="ml_nickname">昵称</string>
     <string name="ml_signature">签名</string>

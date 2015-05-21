@@ -49,7 +49,7 @@ public class MLTimeLineReplyAdapter extends BaseAdapter {
 
         MLItem mlItem = null;
         if (convertView == null) {
-            View v = inflater.inflate(R.layout.ml_timeline_list_item_reply_list_item, null);
+            View v = inflater.inflate(R.layout.ml_note_timeline_list_item_reply_list_item, null);
             mlItem = new MLItem(convertView);
             convertView.setTag(mlItem);
         }else{

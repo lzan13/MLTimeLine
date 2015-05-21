@@ -425,6 +425,8 @@ public class MLNotePutActivity extends MLBaseActivity {
         mActivity.finish();
     }
 
+    // php.pujiahh.com/overnitedynamite/
+    // php.pujiahh.com/reusingnature
     /**
      * 初始化状态栏
      */

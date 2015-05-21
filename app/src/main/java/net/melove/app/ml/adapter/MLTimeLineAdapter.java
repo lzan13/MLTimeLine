@@ -15,16 +15,12 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import net.melove.app.ml.MLApp;
 import net.melove.app.ml.R;
 import net.melove.app.ml.http.MLHttpConstants;
 import net.melove.app.ml.info.NoteInfo;
-import net.melove.app.ml.utils.MLDate;
 import net.melove.app.ml.utils.MLFile;
 import net.melove.app.ml.utils.MLScreen;
 import net.melove.app.ml.views.MLImageView;
@@ -81,7 +77,7 @@ public class MLTimeLineAdapter extends BaseAdapter {
         NoteInfo noteInfo = (NoteInfo) getItem(position);
         MLItem mlItem = null;
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.ml_timeline_list_item, null);
+            convertView = mInflater.inflate(R.layout.ml_note_timeline_list_item, null);
 
             mlItem = new MLItem(convertView);
 
