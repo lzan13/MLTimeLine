@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -33,6 +32,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -235,12 +235,10 @@ public class MLUserActivity extends MLBaseActivity {
     private void initSwipeRefreshLayout() {
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.ml_swipe_refresh_layout);
 
-        mSwipeRefreshLayout.setProgressViewOffset(false, 0, MLScreen.dp2px(R.dimen.ml_dimen_96));
+//        mSwipeRefreshLayout.setProgressViewOffset(true, 0, MLScreen.dp2px(R.dimen.ml_dimen_48));
         mSwipeRefreshLayout.setColorSchemeResources(
-                R.color.ml_blue,
-                R.color.ml_orange,
-                R.color.ml_green,
-                R.color.ml_red);
+                R.color.ml_blue, R.color.ml_orange,
+                R.color.ml_green, R.color.ml_red);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -955,14 +953,13 @@ public class MLUserActivity extends MLBaseActivity {
             mlManager.setStatusBarTintResource(R.color.ml_transparent_primary);
             mlManager.setNavigationBarTintEnabled(true);
             mlManager.setNavigationBarTintResource(R.color.ml_transparent_navigationbar);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            LinearLayout rtl = (LinearLayout) findViewById(R.id.ml_reserved_layout_top);
-            View v = new View(mActivity);
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    MLScreen.getStatusBarHeight() + MLScreen.getToolbarHeight());
-            v.setLayoutParams(lp);
-            rtl.addView(v);
+
+            View stautsBar = mlManager.getmStatusBarTintView();
+
+            View view = findViewById(R.id.ml_toolbar_top_view);
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) view.getLayoutParams();
+            lp.height = stautsBar.getLayoutParams().height;
+            view.setLayoutParams(lp);
         }
     }
 

@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ml_toolbar_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <View
+        android:id="@+id/ml_toolbar_top_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ml_dimen_26"
-        android:background="@color/ml_transparent_primary" />
+        android:layout_height="@dimen/ml_dimen_0" />
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/ml_toolbar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipChildren="true"
-        android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        android:layout_below="@id/ml_toolbar_top_view"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/ml_toolbar_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="?attr/colorPrimary"
-            android:fitsSystemWindows="true"
-            android:minHeight="?attr/actionBarSize"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
-
-        </android.support.v7.widget.Toolbar>
-    </LinearLayout>
+    </android.support.v7.widget.Toolbar>
 </RelativeLayout>

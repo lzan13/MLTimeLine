@@ -2,93 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ml_transparent_primary">
+    android:background="@color/ml_bg_timeline_white">
 
-    <!--<LinearLayout-->
-    <!--android:id="@+id/ml_layout_message_bottom"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_alignParentLeft="true"-->
-    <!--android:orientation="vertical">-->
-
-    <!--<RelativeLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@color/ml_bg_white"-->
-    <!--android:minHeight="@dimen/ml_dimen_48"-->
-    <!--android:paddingLeft="@dimen/ml_dimen_8"-->
-    <!--android:paddingRight="@dimen/ml_dimen_8">-->
-
-    <!--<Button-->
-    <!--android:id="@+id/ml_btn_message_send"-->
-    <!--android:layout_width="@dimen/ml_dimen_56"-->
-    <!--android:layout_height="@dimen/ml_dimen_36"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:layout_marginLeft="@dimen/ml_dimen_8"-->
-    <!--android:background="@drawable/ml_shape_bg_btn_send"-->
-    <!--android:text="@string/ml_send"-->
-    <!--android:textColor="@color/ml_btn_text_color_white"-->
-    <!--android:textSize="@dimen/ml_size_12" />-->
-
-    <!--<EditText-->
-    <!--android:id="@+id/ml_edit_message_content"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/ml_dimen_36"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:layout_toLeftOf="@id/ml_btn_message_send"-->
-    <!--android:background="@drawable/ml_shape_bg_edittext_message"-->
-    <!--android:paddingBottom="@dimen/ml_dimen_4"-->
-    <!--android:paddingLeft="@dimen/ml_dimen_36"-->
-    <!--android:paddingRight="@dimen/ml_dimen_16"-->
-    <!--android:paddingTop="@dimen/ml_dimen_4"-->
-    <!--android:textSize="@dimen/ml_size_14" />-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/ml_btn_face"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentLeft="true"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:layout_marginLeft="@dimen/ml_dimen_4"-->
-    <!--android:src="@mipmap/icon_emotion_smile_32dp" />-->
-    <!--</RelativeLayout>-->
-    <!--</LinearLayout>-->
-
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <View
+        android:layout_width="@dimen/ml_dimen_2"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:background="@color/ml_bg_timeline_white">
+        android:layout_centerHorizontal="true"
+        android:background="@color/ml_bg_view_timeline" />
 
-        <View
-            android:layout_width="@dimen/ml_dimen_2"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:background="@color/ml_bg_view_timeline" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/ml_swipe_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/ml_swipe_refresh_layout"
+            <ListView
+                android:id="@+id/ml_listview_message"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:divider="@color/ml_transparent"
+                android:dividerHeight="@dimen/ml_dimen_0"
+                android:listSelector="@color/ml_transparent">
 
-                <ListView
-                    android:id="@+id/ml_listview_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipChildren="false"
-                    android:divider="@color/ml_transparent"
-                    android:dividerHeight="@dimen/ml_dimen_0"
-                    android:listSelector="@color/ml_transparent">
-
-                </ListView>
-            </android.support.v4.widget.SwipeRefreshLayout>
-        </LinearLayout>
-    </RelativeLayout>
+            </ListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
 </RelativeLayout>

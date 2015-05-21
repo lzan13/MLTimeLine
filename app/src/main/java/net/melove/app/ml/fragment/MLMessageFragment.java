@@ -120,7 +120,7 @@ public class MLMessageFragment extends MLBaseFragment {
     private void initSwipeRefreshLayout(View view) {
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.ml_swipe_refresh_layout);
 
-        mSwipeRefreshLayout.setProgressViewOffset(false, 0, MLScreen.dp2px(R.dimen.ml_dimen_96));
+//        mSwipeRefreshLayout.setProgressViewOffset(false, 0, MLScreen.dp2px(R.dimen.ml_dimen_48));
         mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.ml_blue,
                 R.color.ml_orange,
@@ -254,7 +254,10 @@ public class MLMessageFragment extends MLBaseFragment {
                     temp.setReceiveUserId(cursor.getString(1));
                     temp.setMessageId(cursor.getString(2));
                     temp.setMessageType(cursor.getString(3));
-                    temp.setContent(cursor.getString(4));
+                    String content = cursor.getString(4)
+                            .replace(mUserInfo.getSigninname(), mUserInfo.getNickname())
+                            .replace(mSpouseInfo.getSigninname(), mSpouseInfo.getNickname());
+                    temp.setContent(content);
                     temp.setState(cursor.getInt(5));
                     temp.setCreateAt(cursor.getString(6));
                     mMessageInfoList.add(temp);

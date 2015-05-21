@@ -45,7 +45,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_margin="@dimen/ml_dimen_0"
                 android:layout_toRightOf="@id/ml_img_note_img"
-                android:background="@color/ml_transparent"
+                android:background="@color/ml_gray"
                 android:gravity="left|top"
                 android:hint="@string/ml_note_add_msg"
                 android:inputType="textMultiLine"

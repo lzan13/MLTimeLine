@@ -8,36 +8,22 @@
     android:paddingBottom="@dimen/ml_dimen_16"
     tools:context=".MLMainActivity">
 
-    <LinearLayout
+
+    <net.melove.app.ml.views.MLFilterImageView
+        android:id="@+id/ml_img_cover"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/ml_reserved_layout_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
-
-        <net.melove.app.ml.views.MLFilterImageView
-            android:id="@+id/ml_img_cover"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="@dimen/ml_dimen_16"
-            android:layout_marginLeft="@dimen/ml_dimen_0"
-            android:layout_marginRight="@dimen/ml_dimen_0"
-            android:layout_marginTop="@dimen/ml_dimen_0"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/bg_top"
-            melove:filter_color="@color/ml_filter_gray" />
-    </LinearLayout>
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:paddingBottom="@dimen/ml_dimen_16"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/bg_top"
+        melove:filter_color="@color/ml_filter_gray" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@id/ml_img_cover"
         android:layout_marginLeft="@dimen/ml_dimen_36"
         android:clipChildren="false"
         android:orientation="horizontal">

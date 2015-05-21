@@ -6,16 +6,16 @@
     <string name="app_name">MLTimeLine</string>
 
 
+    <string name="ml_timeline">时间线</string>
+    <string name="ml_message">消息</string>
+    <string name="ml_commemorate">纪念日</string>
+
     <string name="ml_search">搜索</string>
     <string name="ml_face">表情</string>
     <string name="ml_send">发送</string>
-    <string name="ml_message">消息</string>
-    <string name="ml_timeline">时间线</string>
     <string name="ml_setting">设置</string>
     <string name="ml_help">帮助</string>
     <string name="ml_copy">复制</string>
-    <string name="ml_gender_1">男</string>
-    <string name="ml_gender_0">女</string>
 
 
     <string name="ml_open">打开</string>
@@ -58,8 +58,10 @@
     <string name="ml_email">邮箱</string>
     <string name="ml_nickname">昵称</string>
     <string name="ml_signature">签名</string>
-    <string name="ml_gender">性别</string>
     <string name="ml_location">地址</string>
+    <string name="ml_gender">性别</string>
+    <string name="ml_gender_1">男</string>
+    <string name="ml_gender_0">女</string>
     <string name="ml_password">密码</string>
     <string name="ml_password_old">旧密码</string>
     <string name="ml_password_new">新密码</string>
@@ -124,9 +126,9 @@
 
 
     <string-array name="ml_menu_title">
-        <item>时间线</item>
-        <item>消息</item>
-        <item>纪念日</item>
+        <item>@string/ml_timeline</item>
+        <item>@string/ml_commemorate</item>
+        <item>@string/ml_message</item>
     </string-array>
 
 </resources>

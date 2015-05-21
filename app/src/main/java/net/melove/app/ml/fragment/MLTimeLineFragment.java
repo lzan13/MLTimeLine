@@ -159,7 +159,8 @@ public class MLTimeLineFragment extends MLBaseFragment {
     private void initSwipeRefreshLayout(View view) {
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.ml_swipe_refresh_layout);
 
-        mSwipeRefreshLayout.setProgressViewOffset(false, 0, MLScreen.dp2px(R.dimen.ml_dimen_96));
+        // 设置进度圈出现的位置及方式
+//        mSwipeRefreshLayout.setProgressViewOffset(false, 0, MLScreen.dp2px(R.dimen.ml_dimen_48));
         mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.ml_blue, R.color.ml_orange,
                 R.color.ml_green, R.color.ml_red);
@@ -197,14 +198,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
         mUserCover = (MLFilterImageView) mHeadView.findViewById(R.id.ml_img_cover);
         mUserAvatar = (MLImageView) mHeadView.findViewById(R.id.ml_img_user_avatar);
         mSpouseAvatar = (MLImageView) mHeadView.findViewById(R.id.ml_img_spouse_avatar);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            LinearLayout rtl = (LinearLayout) mHeadView.findViewById(R.id.ml_reserved_layout_top);
-            View v = new View(mActivity);
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    MLScreen.getStatusBarHeight() + MLScreen.getToolbarHeight());
-            v.setLayoutParams(lp);
-            rtl.addView(v);
-        }
+
         mUserAvatar.setOnClickListener(viewListener);
         mSpouseAvatar.setOnClickListener(viewListener);
 

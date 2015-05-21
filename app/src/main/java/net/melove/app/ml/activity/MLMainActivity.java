@@ -26,9 +26,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import net.melove.app.ml.R;
 import net.melove.app.ml.fragment.MLBaseFragment;
+import net.melove.app.ml.fragment.MLCommemorateFragment;
 import net.melove.app.ml.fragment.MLDrawerLeftFragment;
 import net.melove.app.ml.fragment.MLMessageFragment;
 import net.melove.app.ml.fragment.MLTimeLineFragment;
@@ -190,6 +192,15 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
                 }
                 break;
             case 1:
+                // 纪念日
+                if (mCurrentIndex != i) {
+                    mCurrentIndex = i;
+                    mCurrentFragment = new MLCommemorateFragment();
+                    mToolbar.setTitle(res.getString(R.string.ml_commemorate));
+                    mMenuType = 0;
+                }
+                break;
+            case 2:
                 // 消息
                 if (mCurrentIndex != i) {
                     mCurrentIndex = i;
@@ -197,9 +208,6 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
                     mToolbar.setTitle(res.getString(R.string.ml_message));
                     mMenuType = 0;
                 }
-                break;
-            case 2:
-                // 纪念日
                 break;
             case 10:
                 MLToast.makeToast(R.mipmap.icon_emotion_sad_24dp,
@@ -233,6 +241,14 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
             mlManager.setStatusBarTintResource(R.color.ml_transparent_statusbar);
             mlManager.setNavigationBarTintEnabled(true);
             mlManager.setNavigationBarTintResource(R.color.ml_transparent_navigationbar);
+
+            View stautsBar = mlManager.getmStatusBarTintView();
+
+            View view = findViewById(R.id.ml_toolbar_top_view);
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) view.getLayoutParams();
+            lp.height = stautsBar.getLayoutParams().height;
+            view.setBackgroundResource(R.color.ml_transparent_primary);
+            view.setLayoutParams(lp);
         }
     }
 
