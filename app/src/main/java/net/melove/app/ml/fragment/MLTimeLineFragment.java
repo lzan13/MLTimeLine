@@ -336,7 +336,8 @@ public class MLTimeLineFragment extends MLBaseFragment {
             if (mldbHelper != null) {
                 String selection = MLDBConstants.COL_LOVE_ID + "=?";
                 String args[] = {mUserInfo.getLoveId()};
-                Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_NOTE, null, selection, args, null, null, null, null);
+                String orderBy = MLDBConstants.COL_CREATE_AT + " desc";
+                Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_NOTE, null, selection, args, null, null, orderBy, null);
                 if (cursor.moveToFirst()) {
                     do {
                         NoteInfo temp = new NoteInfo(cursor);
@@ -364,7 +365,8 @@ public class MLTimeLineFragment extends MLBaseFragment {
         mNoteInfoList.clear();
         MLDBHelper mldbHelper = MLDBHelper.getInstance();
         if (mldbHelper != null) {
-            Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_NOTE, null, null, null, null, null, null, null);
+            String orderBy = MLDBConstants.COL_CREATE_AT + " desc";
+            Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_NOTE, null, null, null, null, null, orderBy, null);
             if (cursor.moveToFirst()) {
                 do {
                     NoteInfo temp = new NoteInfo(cursor);

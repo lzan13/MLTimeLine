@@ -27,9 +27,13 @@ public class MLCommemorateFragment extends MLBaseFragment {
 
         mActivity = getActivity();
 
-        View view = inflater.inflate(R.layout.)
+        View view = inflater.inflate(R.layout.ml_commemorate_fragment_layout, null);
 
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
+    }
+
+    private void initFragment(View view){
+
     }
 }

@@ -211,7 +211,8 @@ public class MLMessageFragment extends MLBaseFragment {
 
         MLDBHelper mldbHelper = MLDBHelper.getInstance();
         if (mldbHelper != null) {
-            Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_MESSAGE, null, null, null, null, null, null, null);
+            String orderBy = MLDBConstants.COL_CREATE_AT + " desc";
+            Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_MESSAGE, null, null, null, null, null, orderBy, null);
             if (cursor.moveToFirst()) {
                 do {
                     MessageInfo temp = new MessageInfo();
@@ -244,7 +245,8 @@ public class MLMessageFragment extends MLBaseFragment {
         mMessageInfoList.clear();
         MLDBHelper mldbHelper = MLDBHelper.getInstance();
         if (mldbHelper != null) {
-            Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_MESSAGE, null, null, null, null, null, null, null);
+            String orderBy = MLDBConstants.COL_CREATE_AT + " desc";
+            Cursor cursor = mldbHelper.queryData(MLDBConstants.TB_MESSAGE, null, null, null, null, null, orderBy, null);
             if (cursor.moveToFirst()) {
                 do {
                     MessageInfo temp = new MessageInfo();
