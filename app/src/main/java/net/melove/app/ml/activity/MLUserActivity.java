@@ -255,7 +255,7 @@ public class MLUserActivity extends MLBaseActivity {
 
                             @Override
                             public void onSuccess(int state, String content) {
-                                parseUserInfo(content);
+                                parseUserInfo(content, 1);
                                 mSwipeRefreshLayout.setRefreshing(false);
                             }
                         });
@@ -418,6 +418,9 @@ public class MLUserActivity extends MLBaseActivity {
                                             JSONObject jsonObject = new JSONObject(content);
                                             if (jsonObject.isNull("error")) {
                                                 mUserInfo.changeInfo();
+                                                // 保存access_token 和signinname 为以后做准备
+                                                MLSPUtil.put(mActivity, MLDBConstants.COL_LOVE_ID, mUserInfo.getLoveId());
+                                                MLSPUtil.put(mActivity, MLDBConstants.COL_ACCESS_TOKEN, mUserInfo.getAccessToken());
                                                 toastStr = res.getString(R.string.ml_password_change_success);
                                                 MLToast.makeToast(R.mipmap.icon_emotion_smile_24dp, toastStr).show();
                                             } else {
@@ -530,7 +533,7 @@ public class MLUserActivity extends MLBaseActivity {
                             // 获取返回数据成功，接下来进一步解析数据
                             @Override
                             public void onSuccess(int state, String content) {
-                                parseUserInfo(content);
+                                parseUserInfo(content, 0);
                             }
 
                             // 获取返回数据失败，一般是网络超时导致（或者无法连接服务器）
@@ -593,7 +596,7 @@ public class MLUserActivity extends MLBaseActivity {
      *
      * @param content
      */
-    private void parseUserInfo(String content) {
+    private void parseUserInfo(String content, int i) {
         Resources res = mActivity.getResources();
         String toastStr = "";
         try {
@@ -606,8 +609,13 @@ public class MLUserActivity extends MLBaseActivity {
                 JSONObject spouse = jsonObject.getJSONObject("spouse");
                 UserInfo spouseInfo = new UserInfo(spouse);
                 spouseInfo.changeInfo();
-
-                toastStr = res.getString(R.string.ml_spouse_add_success);
+                // 保存access_token 和signinname 为以后做准备
+                MLSPUtil.put(mActivity, MLDBConstants.COL_LOVE_ID, mUserInfo.getLoveId());
+                if (i == 0) {
+                    toastStr = res.getString(R.string.ml_spouse_add_success);
+                } else if (i == 1) {
+                    toastStr = res.getString(R.string.ml_refresh_success);
+                }
                 MLToast.makeToast(R.mipmap.icon_emotion_smile_24dp, toastStr).show();
             } else {
                 String error = jsonObject.getString("error");

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -141,7 +140,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
         mListView.addHeaderView(mHeadView);
         mListView.addFooterView(mFooterView);
 
-        mAddNoteBtn = (ImageButton) view.findViewById(R.id.ml_imgbtn_add_note);
+        mAddNoteBtn = (ImageButton) view.findViewById(R.id.ml_imgbtn_note_add);
         mAddNoteBtn.setOnClickListener(viewListener);
         if (MLScreen.getNavigationBarHeight() > 0) {
             LinearLayout reservedBottomLayout = (LinearLayout) view.findViewById(R.id.ml_reserved_layout_bottom);
@@ -397,7 +396,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
                     ActivityCompat.startActivity(mActivity, intent, optionsCompat.toBundle());
                     mActivity.finish();
                     break;
-                case R.id.ml_imgbtn_add_note:
+                case R.id.ml_imgbtn_note_add:
                     intent.setClass(mActivity, MLNotePutActivity.class);
                     optionsCompat = ActivityOptionsCompat.makeCustomAnimation(mActivity,
                             R.anim.ml_fade_in, R.anim.ml_fade_out);

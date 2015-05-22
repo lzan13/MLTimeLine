@@ -61,6 +61,7 @@
     <string name="ml_gender">性别</string>
     <string name="ml_gender_1">男</string>
     <string name="ml_gender_0">女</string>
+
     <string name="ml_password">密码</string>
     <string name="ml_password_old">旧密码</string>
     <string name="ml_password_new">新密码</string>
@@ -73,6 +74,8 @@
 
     <string name="ml_content_null">唉唉！这里空空的没有内容~</string>
     <string name="ml_content_exists">内容重复，不允许添加</string>
+    <string name="ml_refresh_faild">刷新失败</string>
+    <string name="ml_refresh_success">刷新成功</string>
 
 
     <string name="ml_timeline">时间线</string>
