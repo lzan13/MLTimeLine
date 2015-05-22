@@ -79,10 +79,10 @@ public class MLNotePutActivity extends MLBaseActivity {
         setContentView(R.layout.ml_note_put_layout);
         mActivity = this;
 
-        initInfo();
-
         initStatusBar();
         initToolbar();
+
+        initInfo();
         initView();
     }
 
@@ -367,7 +367,7 @@ public class MLNotePutActivity extends MLBaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.note_add_menu, menu);
+        menuInflater.inflate(R.menu.put_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

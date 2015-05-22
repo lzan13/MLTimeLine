@@ -9,8 +9,9 @@ import java.util.Date;
  */
 public class MLDate {
 
-    private static SimpleDateFormat sdp1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static SimpleDateFormat sdp2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+    private static SimpleDateFormat sdp1 = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+    private static SimpleDateFormat sdp2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat sdp3 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
     /**
      * 使用 SimpleDateFormat 方式获取当前格式化后的时间

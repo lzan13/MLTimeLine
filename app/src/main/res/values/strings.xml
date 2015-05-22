@@ -6,10 +6,6 @@
     <string name="app_name">MLTimeLine</string>
 
 
-    <string name="ml_timeline">时间线</string>
-    <string name="ml_message">消息</string>
-    <string name="ml_commemorate">纪念日</string>
-
     <string name="ml_search">搜索</string>
     <string name="ml_face">表情</string>
     <string name="ml_send">发送</string>
@@ -48,8 +44,11 @@
     <string name="ml_spouse_send_id">UID已复制，可发送给另一半</string>
     <string name="ml_spouse_id_or_account">输入另一半的ID或账户</string>
 
-
-    <string name="ml_commemorate_day"></string>
+    <string name="ml_commemorate">纪念日</string>
+    <string name="ml_commemorate_put">新的纪念日</string>
+    <string name="ml_commemorate_title">纪念日标题</string>
+    <string name="ml_commemorate_title_not_null">纪念日标题不能为空</string>
+    <string name="ml_commemorate_content">每一个纪念日都有其特殊意义所在，这次的纪念日又有什么特别，写下来吧O(∩_∩)O~~</string>
 
 
     <string name="ml_id">U_ID</string>
@@ -71,9 +70,12 @@
     <string name="ml_password_change_success">更改密码成功</string>
     <string name="ml_password_change_failed">更改密码失败</string>
 
-    <string name="ml_content_null">啊嘞！这里空空的没有内容哎···</string>
+
+    <string name="ml_content_null">唉唉！这里空空的没有内容~</string>
     <string name="ml_content_exists">内容重复，不允许添加</string>
 
+
+    <string name="ml_timeline">时间线</string>
     <string name="ml_note_put">新的想法</string>
     <string name="ml_note_add_msg">你想说什么？</string>
     <string name="ml_note_send_success">Note成功发表</string>
@@ -84,6 +86,7 @@
     <string name="ml_note_newest_null">没有新的Note内容</string>
 
 
+    <string name="ml_message">消息</string>
     <string name="ml_message_newest_success">获取消息成功</string>
     <string name="ml_message_newest_null">没有最新消息</string>
     <string name="ml_message_header">下拉可获取最新消息</string>
