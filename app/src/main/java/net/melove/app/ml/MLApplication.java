@@ -5,8 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
-
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -18,12 +17,12 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import java.io.File;
 
 /**
- * Created by Administrator on 2015/3/25.
+ * Created by lzan13 on 2015/3/25.
  */
-public class MLApp extends Application {
+public class MLApplication extends Application {
     // 文件路径名
     private static String SDCard = Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
-    private static String app = SDCard + "MLApp/MLTimeLine/";
+    private static String app = SDCard + "MLApplication/MLTimeLine/";
     private static String audio = "audio/";
     private static String cache = "cache/";
     private static String db = "db/";
@@ -54,10 +53,10 @@ public class MLApp extends Application {
                 .showImageOnFail(R.mipmap.bg_transparent_gray)
                 .build();
 
-        // Create global configuration and initialize ImageLoader with this config
+        // 初始化ImageLoader，创建全局的配置
         ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
         config.denyCacheImageMultipleSizesInMemory();
-        config.diskCache(new UnlimitedDiscCache(new File(MLApp.getCache())));
+        config.diskCache(new UnlimitedDiskCache(new File(MLApplication.getCache())));
         config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
         config.tasksProcessingOrder(QueueProcessingType.LIFO);
         config.threadPriority(Thread.NORM_PRIORITY - 2);
@@ -76,7 +75,7 @@ public class MLApp extends Application {
 
 
     public static void setUserPath(String userPath) {
-        MLApp.userPath = app + userPath + "/";
+        MLApplication.userPath = app + userPath + "/";
     }
 
     public static String getUserPath() {

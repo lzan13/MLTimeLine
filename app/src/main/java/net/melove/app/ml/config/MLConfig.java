@@ -1,11 +1,9 @@
 package net.melove.app.ml.config;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
-import net.melove.app.ml.constants.MLAppConstant;
 import net.melove.app.ml.db.MLDBConstants;
 import net.melove.app.ml.db.MLDBHelper;
 import net.melove.app.ml.utils.MLFile;
@@ -47,7 +45,7 @@ public class MLConfig {
             return false;
         }
         String userPath = (String) MLSPUtil.get(context, MLDBConstants.COL_SIGNINNAME, "");
-        MLApp.setUserPath(userPath);
+        MLApplication.setUserPath(userPath);
         return true;
     }
 
@@ -55,19 +53,19 @@ public class MLConfig {
      * 登录及注册成功，根据用户账户 创建相对应的文件夹
      */
     public static void initDir() {
-        MLFile.createDirectory(MLApp.getAudio());
-        MLFile.createDirectory(MLApp.getCache());
-        MLFile.createDirectory(MLApp.getDb());
-        MLFile.createDirectory(MLApp.getImage());
-        MLFile.createDirectory(MLApp.getUserImage());
-        MLFile.createDirectory(MLApp.getLogs());
-        MLFile.createDirectory(MLApp.getTemp());
-        MLFile.createDirectory(MLApp.getUpdate());
-        MLFile.createDirectory(MLApp.getVideo());
+        MLFile.createDirectory(MLApplication.getAudio());
+        MLFile.createDirectory(MLApplication.getCache());
+        MLFile.createDirectory(MLApplication.getDb());
+        MLFile.createDirectory(MLApplication.getImage());
+        MLFile.createDirectory(MLApplication.getUserImage());
+        MLFile.createDirectory(MLApplication.getLogs());
+        MLFile.createDirectory(MLApplication.getTemp());
+        MLFile.createDirectory(MLApplication.getUpdate());
+        MLFile.createDirectory(MLApplication.getVideo());
     }
 
     public static boolean changeDBExists() {
-        File file = new File(MLApp.getDb() + MLDBConstants.DB_NAME);
+        File file = new File(MLApplication.getDb() + MLDBConstants.DB_NAME);
         if (!file.isFile()) {
             return false;
         } else {
@@ -80,7 +78,7 @@ public class MLConfig {
      * 数据库的初始化
      */
     public static void initDatabase() {
-        MLFile.createFile(MLApp.getDb() + MLDBConstants.DB_NAME);
+        MLFile.createFile(MLApplication.getDb() + MLDBConstants.DB_NAME);
 
         // 初始化数据库
         MLDBHelper mDBHelper = MLDBHelper.getInstance();

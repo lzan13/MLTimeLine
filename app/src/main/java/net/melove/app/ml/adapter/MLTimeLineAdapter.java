@@ -17,7 +17,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
 import net.melove.app.ml.http.MLHttpConstants;
 import net.melove.app.ml.info.NoteInfo;
@@ -86,7 +86,7 @@ public class MLTimeLineAdapter extends BaseAdapter {
             mlItem = (MLItem) convertView.getTag();
         }
 
-        Bitmap avatar = MLFile.fileToBitmap(MLApp.getUserImage() + noteInfo.getUserInfo().getAvatar());
+        Bitmap avatar = MLFile.fileToBitmap(MLApplication.getUserImage() + noteInfo.getUserInfo().getAvatar());
         if (avatar != null) {
             mlItem.avatarView.setImageBitmap(avatar);
         }

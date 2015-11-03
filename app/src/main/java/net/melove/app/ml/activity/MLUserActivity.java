@@ -38,7 +38,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
 import net.melove.app.ml.constants.MLAppConstant;
 import net.melove.app.ml.db.MLDBConstants;
@@ -49,7 +49,6 @@ import net.melove.app.ml.http.MLImageResponseListener;
 import net.melove.app.ml.http.MLRequestParams;
 import net.melove.app.ml.http.MLStringResponseListener;
 import net.melove.app.ml.info.UserInfo;
-import net.melove.app.ml.manager.MLSystemBarManager;
 import net.melove.app.ml.utils.MLCrypto;
 import net.melove.app.ml.utils.MLFile;
 import net.melove.app.ml.utils.MLSPUtil;
@@ -74,7 +73,6 @@ public class MLUserActivity extends MLBaseActivity {
 
     private Activity mActivity;
 
-    private MLSystemBarManager mlManager;
     private Toolbar mToolbar;
 
 
@@ -114,7 +112,6 @@ public class MLUserActivity extends MLBaseActivity {
         setContentView(R.layout.ml_user_layout);
 
         mActivity = this;
-        initStatusBar();
         initToolbar();
         initView();
         initSwipeRefreshLayout();
@@ -269,7 +266,7 @@ public class MLUserActivity extends MLBaseActivity {
     private void showUserInfo() {
         if (mUserInfo != null) {
             if (!mUserInfo.getCover().equals("null")) {
-                String userCoverPath = MLApp.getUserImage() + mUserInfo.getCover();
+                String userCoverPath = MLApplication.getUserImage() + mUserInfo.getCover();
                 Bitmap cover = MLFile.fileToBitmap(userCoverPath);
                 if (cover != null) {
                     mUserCover.setImageBitmap(cover);
@@ -282,14 +279,14 @@ public class MLUserActivity extends MLBaseActivity {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mUserCover.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getCover());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mUserInfo.getCover());
                             }
                         }
                     });
                 }
             }
             if (!mUserInfo.getAvatar().equals("null")) {
-                String userAvatarPath = MLApp.getUserImage() + mUserInfo.getAvatar();
+                String userAvatarPath = MLApplication.getUserImage() + mUserInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(userAvatarPath);
                 if (avatar != null) {
                     mUserAvatar.setImageBitmap(avatar);
@@ -302,7 +299,7 @@ public class MLUserActivity extends MLBaseActivity {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mUserAvatar.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getAvatar());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mUserInfo.getAvatar());
                             }
                         }
                     });
@@ -311,7 +308,7 @@ public class MLUserActivity extends MLBaseActivity {
         }
         if (mSpouseInfo != null) {
             if (!mSpouseInfo.getAvatar().equals("null")) {
-                String spouseAvatarPath = MLApp.getUserImage() + mSpouseInfo.getAvatar();
+                String spouseAvatarPath = MLApplication.getUserImage() + mSpouseInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(spouseAvatarPath);
                 if (avatar != null) {
                     mSpouseAvatar.setImageBitmap(avatar);
@@ -324,7 +321,7 @@ public class MLUserActivity extends MLBaseActivity {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mSpouseAvatar.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mSpouseInfo.getAvatar());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mSpouseInfo.getAvatar());
                             }
                         }
                     });
@@ -557,7 +554,7 @@ public class MLUserActivity extends MLBaseActivity {
         TextView spouseSignature = (TextView) view.findViewById(R.id.ml_text_user_spouse_signature);
 
         if (!mSpouseInfo.getCover().equals("null")) {
-            String spouseCoverPath = MLApp.getUserImage() + mSpouseInfo.getCover();
+            String spouseCoverPath = MLApplication.getUserImage() + mSpouseInfo.getCover();
             Bitmap avatar = MLFile.fileToBitmap(spouseCoverPath);
             if (avatar != null) {
                 spouseCover.setImageBitmap(avatar);
@@ -570,14 +567,14 @@ public class MLUserActivity extends MLBaseActivity {
                         super.onLoadingComplete(imageUri, view, loadedImage);
                         if (loadedImage != null) {
                             spouseCover.setImageBitmap(loadedImage);
-                            MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mSpouseInfo.getCover());
+                            MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mSpouseInfo.getCover());
                         }
                     }
                 });
             }
         }
         if (!mSpouseInfo.getAvatar().equals("null")) {
-            String spouseAvatarPath = MLApp.getUserImage() + mSpouseInfo.getAvatar();
+            String spouseAvatarPath = MLApplication.getUserImage() + mSpouseInfo.getAvatar();
             Bitmap avatar = MLFile.fileToBitmap(spouseAvatarPath);
             if (avatar != null) {
                 spouseAvatar.setImageBitmap(avatar);
@@ -636,7 +633,7 @@ public class MLUserActivity extends MLBaseActivity {
      */
     private void changeUserAvatar() {
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-        multipartEntityBuilder.addPart("mlavatar", new FileBody(new File(MLApp.getUserImage() + mUserInfo.getAvatar())));
+        multipartEntityBuilder.addPart("mlavatar", new FileBody(new File(MLApplication.getUserImage() + mUserInfo.getAvatar())));
         multipartEntityBuilder.addTextBody("access_token", mUserInfo.getAccessToken());
         String url = MLHttpConstants.API_URL + MLHttpConstants.API_USER_SETAVATAR;
         uploadImage(url, multipartEntityBuilder.build());
@@ -647,7 +644,7 @@ public class MLUserActivity extends MLBaseActivity {
      */
     private void changeUserCover() {
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-        multipartEntityBuilder.addPart("mlcover", new FileBody(new File(MLApp.getUserImage() + mUserInfo.getCover())));
+        multipartEntityBuilder.addPart("mlcover", new FileBody(new File(MLApplication.getUserImage() + mUserInfo.getCover())));
         multipartEntityBuilder.addTextBody("access_token", mUserInfo.getAccessToken());
         String url = MLHttpConstants.API_URL + MLHttpConstants.API_USER_SETCOVER;
         uploadImage(url, multipartEntityBuilder.build());
@@ -730,7 +727,7 @@ public class MLUserActivity extends MLBaseActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // 判断存储卡是否可以用，可用进行存储
         if (MLFile.hasSdcard()) {
-            mTempFile = new File(MLApp.getTemp(), MLAppConstant.ML_TEMP_PHOTO);
+            mTempFile = new File(MLApplication.getTemp(), MLAppConstant.ML_TEMP_PHOTO);
             // 从文件中创建uri
             mTempUri = Uri.fromFile(mTempFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, mTempUri);
@@ -747,7 +744,7 @@ public class MLUserActivity extends MLBaseActivity {
      * @param height
      */
     private void clipImage(Uri uri, int width, int height) {
-        String tempPath = MLApp.getTemp() + MLAppConstant.ML_TEMP_PHOTO;
+        String tempPath = MLApplication.getTemp() + MLAppConstant.ML_TEMP_PHOTO;
         mTempUri = Uri.fromFile(new File(tempPath));
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
@@ -822,12 +819,12 @@ public class MLUserActivity extends MLBaseActivity {
                     if (isAvatar) {
                         mUserAvatar.setImageBitmap(bitmap);
                         mUserInfo.setAvatar("avatar_" + mUserInfo.getSigninname() + ".jpg");
-                        MLFile.saveBitmapToSDCard(bitmap, MLApp.getUserImage() + mUserInfo.getAvatar());
+                        MLFile.saveBitmapToSDCard(bitmap, MLApplication.getUserImage() + mUserInfo.getAvatar());
                         changeUserAvatar();
                     } else {
                         mUserCover.setImageBitmap(bitmap);
                         mUserInfo.setCover("cover_" + mUserInfo.getSigninname() + ".jpg");
-                        MLFile.saveBitmapToSDCard(bitmap, MLApp.getUserImage() + mUserInfo.getCover());
+                        MLFile.saveBitmapToSDCard(bitmap, MLApplication.getUserImage() + mUserInfo.getCover());
                         changeUserCover();
                     }
                 } catch (Exception e) {
@@ -951,36 +948,16 @@ public class MLUserActivity extends MLBaseActivity {
         mActivity.finish();
     }
 
-    /**
-     * 初始化状态栏
-     */
-    private void initStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mlManager = new MLSystemBarManager(mActivity);
-            mlManager.setStatusBarTintEnabled(true);
-            mlManager.setStatusBarTintResource(R.color.ml_transparent_primary);
-            mlManager.setNavigationBarTintEnabled(true);
-            mlManager.setNavigationBarTintResource(R.color.ml_transparent_navigationbar);
-
-            View stautsBar = mlManager.getmStatusBarTintView();
-
-            View view = findViewById(R.id.ml_toolbar_top_view);
-            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) view.getLayoutParams();
-            lp.height = stautsBar.getLayoutParams().height;
-            view.setLayoutParams(lp);
-        }
-    }
-
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             int what = msg.what;
             switch (what) {
                 case 0:
-                    mUserAvatar.setImageBitmap(BitmapFactory.decodeFile(MLApp.getUserImage() + mUserInfo.getAvatar()));
+                    mUserAvatar.setImageBitmap(BitmapFactory.decodeFile(MLApplication.getUserImage() + mUserInfo.getAvatar()));
                     break;
                 case 1:
-                    mUserCover.setImageBitmap(BitmapFactory.decodeFile(MLApp.getUserImage() + mUserInfo.getCover()));
+                    mUserCover.setImageBitmap(BitmapFactory.decodeFile(MLApplication.getUserImage() + mUserInfo.getCover()));
                     break;
             }
         }

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
 import net.melove.app.ml.activity.MLMainActivity;
 import net.melove.app.ml.config.MLConfig;
@@ -153,7 +153,7 @@ public class MLSignupFragment extends MLBaseFragment {
                 MLSPUtil.put(mActivity, MLDBConstants.COL_SIGNINNAME, userInfo.getSigninname());
 
                 // 登录成功，初始化当前登录账户目录以及数据库
-                MLApp.setUserPath(userInfo.getSigninname());
+                MLApplication.setUserPath(userInfo.getSigninname());
                 MLConfig.initDir();
                 MLConfig.initDatabase();
 

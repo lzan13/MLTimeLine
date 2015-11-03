@@ -7,7 +7,7 @@ import android.util.TypedValue;
 import android.view.Display;
 import android.view.WindowManager;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 
 import java.lang.reflect.Method;
 
@@ -27,7 +27,7 @@ public class MLScreen {
     }
 
     public static Point getScreenSize() {
-        WindowManager wm = (WindowManager) MLApp.getContext().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) MLApplication.getContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         Point outSize = new Point();
         display.getSize(outSize);
@@ -48,7 +48,7 @@ public class MLScreen {
      * @return
      */
     public static int getStatusBarHeight() {
-        Resources res = MLApp.getContext().getResources();
+        Resources res = MLApplication.getContext().getResources();
         int height = res.getIdentifier("status_bar_height", "dimen", "android");
         height = res.getDimensionPixelSize(height);
         MLLog.i("statusBar.h." + height);
@@ -62,7 +62,7 @@ public class MLScreen {
      * @return
      */
     public static int getNavigationBarHeight() {
-        Resources res = MLApp.getContext().getResources();
+        Resources res = MLApplication.getContext().getResources();
         int height = 0;
         if (hasNavigationBar()) {
             String key = NAV_BAR_HEIGHT_RES_NAME;
@@ -74,7 +74,7 @@ public class MLScreen {
 
 
     public static int getSystemBarHeight() {
-        Resources res = MLApp.getContext().getResources();
+        Resources res = MLApplication.getContext().getResources();
         int height = res.getIdentifier("system_bar_height", "dimen", "android");
         height = res.getDimensionPixelSize(height);
         MLLog.i("systembar.h." + height);
@@ -94,8 +94,8 @@ public class MLScreen {
             return height;
         }
         TypedValue tv = new TypedValue();
-        if (MLApp.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            height = TypedValue.complexToDimensionPixelSize(tv.data, MLApp.getContext().getResources().getDisplayMetrics());
+        if (MLApplication.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            height = TypedValue.complexToDimensionPixelSize(tv.data, MLApplication.getContext().getResources().getDisplayMetrics());
         }
         MLLog.i("toolbar.h." + height);
         return height;
@@ -118,7 +118,7 @@ public class MLScreen {
      */
     private static boolean hasNavigationBar() {
         boolean hasNavigationBar = false;
-        Resources rs = MLApp.getContext().getResources();
+        Resources rs = MLApplication.getContext().getResources();
         int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
         if (id > 0) {
             hasNavigationBar = rs.getBoolean(id);
@@ -145,7 +145,7 @@ public class MLScreen {
      * @return
      */
     public static int dp2px(int count) {
-        Resources res = MLApp.getContext().getResources();
+        Resources res = MLApplication.getContext().getResources();
         int result = res.getDimensionPixelSize(count);
         return result;
     }

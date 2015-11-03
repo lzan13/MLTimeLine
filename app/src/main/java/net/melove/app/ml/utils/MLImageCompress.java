@@ -7,7 +7,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
 import net.melove.app.ml.constants.MLAppConstant;
 
@@ -50,7 +50,7 @@ public class MLImageCompress {
         options.inJustDecodeBounds = false;
 
         bitmap = BitmapFactory.decodeFile(filepath, options);
-        MLFile.saveBitmapToSDCard(bitmap, MLApp.getTemp() + MLAppConstant.ML_TEMP_PHOTO);
+        MLFile.saveBitmapToSDCard(bitmap, MLApplication.getTemp() + MLAppConstant.ML_TEMP_PHOTO);
         return getThumbnail(bitmap);
     }
 
@@ -61,7 +61,7 @@ public class MLImageCompress {
      * @return
      */
     private static Bitmap getThumbnail(Bitmap bitmap) {
-        int thumbnailWidth = MLApp.getContext().getResources().getDimensionPixelSize(R.dimen.ml_dimen_72);
+        int thumbnailWidth = MLApplication.getContext().getResources().getDimensionPixelSize(R.dimen.ml_dimen_72);
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();
         float scale = 0.5f;
@@ -109,7 +109,7 @@ public class MLImageCompress {
     private static String getFilePath(Uri uri) {
         String path = null;
         if (CONTENT.equalsIgnoreCase(uri.getScheme())) {
-            Cursor cursor = MLApp.getContext().getContentResolver().query(uri,
+            Cursor cursor = MLApplication.getContext().getContentResolver().query(uri,
                     new String[]{MediaStore.Images.Media.DATA}, null, null, null);
             if (cursor == null) {
                 return null;

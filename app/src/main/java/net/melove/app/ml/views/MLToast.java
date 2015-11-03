@@ -1,18 +1,16 @@
 package net.melove.app.ml.views;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
 
 
@@ -23,7 +21,7 @@ public class MLToast {
 
     private boolean isShow;
 
-    private Context mContext = MLApp.getContext();
+    private Context mContext = MLApplication.getContext();
 
     private WindowManager mWindowManager;
     private View mToastView;
@@ -58,8 +56,8 @@ public class MLToast {
                 | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
         mParams.gravity = Gravity.LEFT | Gravity.TOP;
-        mParams.x = MLApp.getContext().getResources().getDimensionPixelSize(R.dimen.ml_dimen_16);
-        mParams.y = MLApp.getContext().getResources().getDimensionPixelSize(R.dimen.ml_dimen_72);
+        mParams.x = MLApplication.getContext().getResources().getDimensionPixelSize(R.dimen.ml_dimen_16);
+        mParams.y = MLApplication.getContext().getResources().getDimensionPixelSize(R.dimen.ml_dimen_72);
 
     }
 

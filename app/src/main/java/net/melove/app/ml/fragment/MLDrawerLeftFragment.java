@@ -1,38 +1,30 @@
 package net.melove.app.ml.fragment;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
-import net.melove.app.ml.activity.MLSignActivity;
 import net.melove.app.ml.adapter.MLDrawerLeftAdapter;
-import net.melove.app.ml.constants.MLAppConstant;
 import net.melove.app.ml.db.MLDBConstants;
 import net.melove.app.ml.db.MLDBHelper;
 import net.melove.app.ml.http.MLHttpConstants;
 import net.melove.app.ml.info.UserInfo;
 import net.melove.app.ml.utils.MLFile;
 import net.melove.app.ml.utils.MLSPUtil;
-import net.melove.app.ml.utils.MLScreen;
 import net.melove.app.ml.views.MLFilterImageView;
 import net.melove.app.ml.views.MLImageView;
-import net.melove.app.ml.views.MLToast;
 
 
 /**
@@ -117,7 +109,7 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
 
         if (mUserInfo != null) {
             if (!mUserInfo.getCover().equals("null")) {
-                String userCoverPath = MLApp.getUserImage() + mUserInfo.getCover();
+                String userCoverPath = MLApplication.getUserImage() + mUserInfo.getCover();
                 Bitmap cover = MLFile.fileToBitmap(userCoverPath);
                 if (cover != null) {
                     mUserCover.setImageBitmap(cover);
@@ -130,7 +122,7 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mUserCover.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getCover());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mUserInfo.getCover());
 
                             }
                         }
@@ -138,7 +130,7 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
                 }
             }
             if (!mUserInfo.getAvatar().equals("null")) {
-                String userAvatarPath = MLApp.getUserImage() + mUserInfo.getAvatar();
+                String userAvatarPath = MLApplication.getUserImage() + mUserInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(userAvatarPath);
                 if (avatar != null) {
                     mUserAvatar.setImageBitmap(avatar);
@@ -151,7 +143,7 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mUserAvatar.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getAvatar());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mUserInfo.getAvatar());
                             }
                         }
                     });
@@ -162,7 +154,7 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
         }
         if (mSpouseInfo != null) {
             if (!mSpouseInfo.getAvatar().equals("null")) {
-                String spouseAvatarPath = MLApp.getUserImage() + mSpouseInfo.getAvatar();
+                String spouseAvatarPath = MLApplication.getUserImage() + mSpouseInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(spouseAvatarPath);
                 if (avatar != null) {
                     mSpouseAvatar.setImageBitmap(avatar);
@@ -175,7 +167,7 @@ public class MLDrawerLeftFragment extends MLBaseFragment {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mSpouseAvatar.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mSpouseInfo.getAvatar());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mSpouseInfo.getAvatar());
                             }
                         }
                     });

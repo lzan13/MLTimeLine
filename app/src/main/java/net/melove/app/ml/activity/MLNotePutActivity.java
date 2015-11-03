@@ -25,7 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
 import net.melove.app.ml.constants.MLAppConstant;
 import net.melove.app.ml.db.MLDBConstants;
@@ -35,7 +35,6 @@ import net.melove.app.ml.http.MLHttpUtil;
 import net.melove.app.ml.http.MLImageResponseListener;
 import net.melove.app.ml.info.NoteInfo;
 import net.melove.app.ml.info.UserInfo;
-import net.melove.app.ml.manager.MLSystemBarManager;
 import net.melove.app.ml.utils.MLCrypto;
 import net.melove.app.ml.utils.MLDate;
 import net.melove.app.ml.utils.MLFile;
@@ -62,7 +61,6 @@ public class MLNotePutActivity extends MLBaseActivity {
 
     private Activity mActivity;
 
-    private MLSystemBarManager mlManager;
     private View mStatusBarView;
 
     private UserInfo mUserInfo;
@@ -79,7 +77,6 @@ public class MLNotePutActivity extends MLBaseActivity {
         setContentView(R.layout.ml_note_put_layout);
         mActivity = this;
 
-        initStatusBar();
         initToolbar();
 
         initInfo();
@@ -253,8 +250,8 @@ public class MLNotePutActivity extends MLBaseActivity {
             return;
         }
         String dateTime = MLDate.getCurrentDate();
-        String srcPath = MLApp.getTemp() + MLAppConstant.ML_TEMP_PHOTO;
-        String destPath = MLApp.getImage() + MLCrypto.cryptoStr2MD5(dateTime) + "." + MLFile.getImageSize(srcPath) + ".jpg";
+        String srcPath = MLApplication.getTemp() + MLAppConstant.ML_TEMP_PHOTO;
+        String destPath = MLApplication.getImage() + MLCrypto.cryptoStr2MD5(dateTime) + "." + MLFile.getImageSize(srcPath) + ".jpg";
         String content = mNoteContentView.getText().toString();
         if (MLFile.copyFile(srcPath, destPath)) {
 
@@ -425,27 +422,4 @@ public class MLNotePutActivity extends MLBaseActivity {
         mActivity.finish();
     }
 
-    // php.pujiahh.com/overnitedynamite/
-    // php.pujiahh.com/reusingnature
-    /**
-     * 初始化状态栏
-     */
-    private void initStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(mActivity.getResources().getColor(R.color.ml_transparent_primary));
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mlManager = new MLSystemBarManager(mActivity);
-            mlManager.setStatusBarTintEnabled(true);
-            mlManager.setStatusBarTintResource(R.color.ml_transparent_primary);
-            mlManager.setNavigationBarTintEnabled(true);
-            mlManager.setNavigationBarTintResource(R.color.ml_transparent_navigationbar);
-        }
-        if (MLScreen.getNavigationBarHeight() > 0) {
-            LinearLayout reservedBottomLayout = (LinearLayout) findViewById(R.id.ml_reserved_layout_bottom);
-            View v = new View(mActivity);
-            v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, MLScreen.getNavigationBarHeight()));
-            reservedBottomLayout.addView(v);
-        }
-    }
 }

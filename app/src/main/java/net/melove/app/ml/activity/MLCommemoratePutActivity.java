@@ -19,9 +19,7 @@ import net.melove.app.ml.R;
 import net.melove.app.ml.db.MLDBConstants;
 import net.melove.app.ml.http.MLHttpConstants;
 import net.melove.app.ml.http.MLHttpUtil;
-import net.melove.app.ml.http.MLImageResponseListener;
 import net.melove.app.ml.http.MLStringResponseListener;
-import net.melove.app.ml.manager.MLSystemBarManager;
 import net.melove.app.ml.utils.MLSPUtil;
 import net.melove.app.ml.views.MLToast;
 
@@ -36,7 +34,6 @@ import org.apache.http.protocol.HTTP;
 public class MLCommemoratePutActivity extends MLBaseActivity {
 
     private Activity mActivity;
-    private MLSystemBarManager mlManager;
 
     private Toolbar mToolbar;
 
@@ -51,7 +48,6 @@ public class MLCommemoratePutActivity extends MLBaseActivity {
 
         mActivity = this;
 
-        initStatusBar();
         initToolbar();
         initView();
 
@@ -145,22 +141,6 @@ public class MLCommemoratePutActivity extends MLBaseActivity {
 
             }
         });
-    }
-
-    /**
-     * 初始化状态栏
-     */
-    private void initStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(mActivity.getResources().getColor(R.color.ml_transparent_primary));
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mlManager = new MLSystemBarManager(mActivity);
-            mlManager.setStatusBarTintEnabled(true);
-            mlManager.setStatusBarTintResource(R.color.ml_transparent_primary);
-            mlManager.setNavigationBarTintEnabled(true);
-            mlManager.setNavigationBarTintResource(R.color.ml_transparent_navigationbar);
-        }
     }
 
     @Override

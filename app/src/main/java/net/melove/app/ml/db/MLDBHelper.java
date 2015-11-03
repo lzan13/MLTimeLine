@@ -1,13 +1,10 @@
 package net.melove.app.ml.db;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import net.melove.app.ml.MLApp;
-import net.melove.app.ml.activity.MLSignActivity;
-import net.melove.app.ml.config.MLConfig;
+import net.melove.app.ml.MLApplication;
 
 import java.io.File;
 
@@ -41,7 +38,7 @@ public class MLDBHelper {
     }
 
     private boolean openDatabase() {
-        File file = new File(MLApp.getDb() + DBName);
+        File file = new File(MLApplication.getDb() + DBName);
         if (!file.exists()) {
             return false;
         }

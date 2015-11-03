@@ -26,7 +26,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 import net.melove.app.ml.R;
 import net.melove.app.ml.activity.MLNotePutActivity;
 import net.melove.app.ml.activity.MLUserActivity;
@@ -203,7 +203,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
 
         if (mUserInfo != null) {
             if (!mUserInfo.getCover().equals("null")) {
-                String userCoverPath = MLApp.getUserImage() + mUserInfo.getCover();
+                String userCoverPath = MLApplication.getUserImage() + mUserInfo.getCover();
                 Bitmap cover = MLFile.fileToBitmap(userCoverPath);
                 if (cover != null) {
                     mUserCover.setImageBitmap(cover);
@@ -216,14 +216,14 @@ public class MLTimeLineFragment extends MLBaseFragment {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mUserCover.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getCover());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mUserInfo.getCover());
                             }
                         }
                     });
                 }
             }
             if (!mUserInfo.getAvatar().equals("null")) {
-                String userAvatarPath = MLApp.getUserImage() + mUserInfo.getAvatar();
+                String userAvatarPath = MLApplication.getUserImage() + mUserInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(userAvatarPath);
                 if (avatar != null) {
                     mUserAvatar.setImageBitmap(avatar);
@@ -236,7 +236,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mUserAvatar.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mUserInfo.getAvatar());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mUserInfo.getAvatar());
                             }
                         }
                     });
@@ -245,7 +245,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
         }
         if (mSpouseInfo != null) {
             if (!mSpouseInfo.getAvatar().equals("null")) {
-                String spouseAvatarPath = MLApp.getUserImage() + mSpouseInfo.getAvatar();
+                String spouseAvatarPath = MLApplication.getUserImage() + mSpouseInfo.getAvatar();
                 Bitmap avatar = MLFile.fileToBitmap(spouseAvatarPath);
                 if (avatar != null) {
                     mSpouseAvatar.setImageBitmap(avatar);
@@ -258,7 +258,7 @@ public class MLTimeLineFragment extends MLBaseFragment {
                             super.onLoadingComplete(imageUri, view, loadedImage);
                             if (loadedImage != null) {
                                 mSpouseAvatar.setImageBitmap(loadedImage);
-                                MLFile.saveBitmapToSDCard(loadedImage, MLApp.getUserImage() + mSpouseInfo.getAvatar());
+                                MLFile.saveBitmapToSDCard(loadedImage, MLApplication.getUserImage() + mSpouseInfo.getAvatar());
                             }
                         }
                     });

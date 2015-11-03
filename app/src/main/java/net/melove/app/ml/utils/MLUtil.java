@@ -3,7 +3,7 @@ package net.melove.app.ml.utils;
 import android.content.Intent;
 import android.net.Uri;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 
 import java.io.File;
 
@@ -28,7 +28,7 @@ public class MLUtil {
         sharedIntent.putExtra(Intent.EXTRA_TEXT, shareMsg);
         sharedIntent.putExtra(Intent.EXTRA_TITLE, "选择分享");
 
-        MLApp.getContext().startActivity(Intent.createChooser(sharedIntent, "选择分享"));
+        MLApplication.getContext().startActivity(Intent.createChooser(sharedIntent, "选择分享"));
     }
 
 }

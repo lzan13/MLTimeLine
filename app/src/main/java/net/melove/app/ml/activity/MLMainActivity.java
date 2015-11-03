@@ -23,9 +23,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import net.melove.app.ml.R;
@@ -34,9 +31,7 @@ import net.melove.app.ml.fragment.MLCommemorateFragment;
 import net.melove.app.ml.fragment.MLDrawerLeftFragment;
 import net.melove.app.ml.fragment.MLMessageFragment;
 import net.melove.app.ml.fragment.MLTimeLineFragment;
-import net.melove.app.ml.manager.MLSystemBarManager;
 import net.melove.app.ml.config.MLConfig;
-import net.melove.app.ml.utils.MLLog;
 import net.melove.app.ml.views.MLToast;
 
 
@@ -46,7 +41,6 @@ import net.melove.app.ml.views.MLToast;
 public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLFragmentCallback {
 
     private Activity mActivity;
-    private MLSystemBarManager mlManager;
 
     private int mMenuType;
     private Intent mIntent;
@@ -67,7 +61,6 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
         setContentView(R.layout.activity_main);
 
         mActivity = this;
-        initStatusBar();
 
         //检测软件是否第一次运行
         MLConfig.chackFirstRun(mActivity);
@@ -231,26 +224,6 @@ public class MLMainActivity extends MLBaseActivity implements MLBaseFragment.MLF
         mDrawerLayout.closeDrawer(Gravity.START);
     }
 
-    /**
-     * 初始化状态栏
-     */
-    private void initStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mlManager = new MLSystemBarManager(mActivity);
-            mlManager.setStatusBarTintEnabled(true);
-            mlManager.setStatusBarTintResource(R.color.ml_transparent_statusbar);
-            mlManager.setNavigationBarTintEnabled(true);
-            mlManager.setNavigationBarTintResource(R.color.ml_transparent_navigationbar);
-
-            View stautsBar = mlManager.getmStatusBarTintView();
-
-            View view = findViewById(R.id.ml_toolbar_top_view);
-            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) view.getLayoutParams();
-            lp.height = stautsBar.getLayoutParams().height;
-            view.setBackgroundResource(R.color.ml_transparent_primary);
-            view.setLayoutParams(lp);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

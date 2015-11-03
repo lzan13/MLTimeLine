@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import net.melove.app.ml.MLApp;
+import net.melove.app.ml.MLApplication;
 
 /**
  * Created by Administrator on 2015/5/12.
@@ -17,7 +17,7 @@ public class MLNetWorks {
      */
     public static boolean checkNetworkState() {
         boolean isNetwork = false;
-        ConnectivityManager manager = (ConnectivityManager) MLApp.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager = (ConnectivityManager) MLApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (manager.getActiveNetworkInfo() != null) {
             isNetwork = manager.getActiveNetworkInfo().isAvailable();
         }
@@ -30,7 +30,7 @@ public class MLNetWorks {
      * @return
      */
     public static boolean isNetworkInfo() {
-        ConnectivityManager manager = (ConnectivityManager) MLApp.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager = (ConnectivityManager) MLApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo.State wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
         NetworkInfo.State gprs = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
