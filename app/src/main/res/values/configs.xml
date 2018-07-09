@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--侧边菜单的图标id-->
-    <integer-array name="ml_menu_icon_drawable">
-        <item>@mipmap/icon_settings_gray_24dp</item>
-        <item>@mipmap/icon_settings_gray_24dp</item>
-        <item>@mipmap/icon_settings_gray_24dp</item>
-    </integer-array>
-    
-    
-    <integer name="ml_time_sign_fragment_switch">1150</integer>
-    
-    <integer name="ml_time_avatar_anim">500</integer>
-    
-    <integer name="ml_time_color_change">200</integer>
-    
-    <integer name="ml_time_activity_in">360</integer>
-    <integer name="ml_time_activity_out">360</integer>
+
 </resources>

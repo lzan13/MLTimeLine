@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MLTimeLine.iml" filepath="$PROJECT_DIR$/MLTimeLine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VMTimeLine.iml" filepath="$PROJECT_DIR$/VMTimeLine.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

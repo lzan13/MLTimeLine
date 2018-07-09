@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:dither="true">
-            <corners android:radius="@dimen/ml_dimen_24" />
-            <solid android:color="@color/ml_bg_view_timeline" />
-        </shape>
-    </item>
-</selector>

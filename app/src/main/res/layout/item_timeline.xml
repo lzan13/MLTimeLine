@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8"
+        android:background="@drawable/bg_note_card"
+        android:clipChildren="false"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.vmloft.develop.library.tools.widget.VMImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="@dimen/dimen_32"
+                android:layout_height="@dimen/dimen_32"
+                android:layout_margin="@dimen/dimen_8"
+                android:src="@drawable/ic_default_avatar_spider"
+                app:vm_press_alpha="20"
+                app:vm_press_color="@color/press_tint"
+                app:vm_shape_type="round"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_48"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/text_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hello"
+                    android:textSize="@dimen/vm_size_caption"
+                    />
+
+                <TextView
+                    android:id="@+id/text_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hello"
+                    android:textSize="@dimen/vm_size_caption"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <ImageView
+                android:id="@+id/img_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@drawable/vm_click_flat_transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/vm_img_default"
+                />
+
+            <TextView
+                android:id="@+id/text_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_8"
+                android:padding="@dimen/vm_padding_small"
+                android:text="@string/test_text"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

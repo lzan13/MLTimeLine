@@ -1,78 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!--不透明颜色-->
-    <color name="ml_white">#ffffffff</color>
-    <color name="ml_block">#ff000000</color>
-    <color name="ml_red">#ffe51c23</color>
-    <color name="ml_orange">#ffff9800</color>
-    <color name="ml_yellow">#ffffeb3b</color>
-    <color name="ml_green">#ff259b24</color>
-    <color name="ml_cyan">#ff00bcd4</color>
-    <color name="ml_blue">#ff5677fc</color>
-    <color name="ml_gray">#ff9e9e9e</color>
-
-    <color name="ml_primary">#ffe62f17</color>
-    <color name="ml_primary_light">#ffe62f17</color>
-
-    <color name="ml_primary_text_white">#ffffffff</color>
-
-    <!--透明颜色-->
-    <color name="ml_transparent">#00000000</color>
-
-
-    <color name="ml_transparent_primary">#f8e62f17</color>
-    <color name="ml_transparent_primary_light">#f8e62f17</color>
-    <color name="ml_transparent_statusbar">#70e62f17</color>
-    <color name="ml_transparent_navigationbar">#8de62f17</color>
-
-    <!--按钮的颜色-->
-    <color name="ml_btn_red_normal">#ffe62f17</color>
-    <color name="ml_btn_red_pressed">#ffbe2d17</color>
-    <color name="ml_btn_blue_normal">#f800affe</color>
-    <color name="ml_btn_blue_pressed">#f8007cb7</color>
-    <color name="ml_btn_gray_white_pressed">#ffebebeb</color>
-    <color name="ml_btn_gray_white_normal">#fff6f6f6</color>
-    <color name="ml_btn_sign_normal">#a8d8d8d8</color>
-    <color name="ml_btn_sign_pressed">#a8c8c8c8</color>
-
-    <!--文字的颜色-->
-    <color name="ml_text_blue">#ff4285F4</color>
-    <color name="ml_text_white">#ffffffff</color>
-    <color name="ml_text_gray_white">#ffebebeb</color>
-    <color name="ml_text_block">#ff363636</color>
-    <color name="ml_text_gray">#ffa2a2a2</color>
-    <color name="ml_text_content_block">#ff333333</color>
-    <color name="ml_text_hint_gray_1">#ff999999</color>
-    <color name="ml_text_hint_gray_2">#ffaba49d</color>
+    <!--主题色-->
+    <color name="colorPrimary">#ffe62f17</color>
+    <color name="colorPrimaryDark">#d22c16</color>
+    <color name="colorAccent">#ff2cbe60</color>
 
     <!--背景色-->
-    <color name="ml_bg_blue">#7f239efe</color>
-    <color name="ml_bg_white">#ffffffff</color>
-    <color name="ml_bg_timeline_white">#fff5f0eb</color>
-    <color name="ml_bg_blue_white">#ffeff8fc</color>
-    <color name="ml_bg_gray_white">#f8e8e8e8</color>
-    <color name="ml_bg_user_item_white">#88ffffff</color>
-    <color name="ml_bg_tip_text">#ffe8e4dd</color>
+    <color name="background_overall">#fff8f8f8</color>
+    <color name="background_light">#fffefefe</color>
+    <color name="launcher_background">@color/colorPrimary</color>
 
-    <color name="ml_bg_view_timeline">#ffe8e4dd</color>
-    <color name="ml_bg_view_divider">#ffdfd9d3</color>
+    <!--头像边框-->
+    <color name="avatar_border">#ddffffff</color>
 
-    <!--滤镜颜色-->
-    <color name="ml_view_press_red">#a8e73922</color>
-    <color name="ml_filter_gray">#ffd2d2d2</color>
-    <color name="ml_filter_red">#a2f80000</color>
+    <!--按下变色-->
+    <color name="press_tint">@color/vm_black_12</color>
 
-    <!--边框颜色-->
-    <color name="ml_border_blue">#ff1DA9DA</color>
-    <color name="ml_border_gray">#ffd8d8d8</color>
-    <color name="ml_border_white">#ffffffff</color>
-    <color name="ml_border_red">#e8e62f17</color>
+    <!--TabLayout item 选中状态颜色-->
+    <color name="tab_activate">@color/vm_white</color>
+    <color name="tab_inactivate">@color/vm_red_38</color>
 
-    <!--sign EditText背景色-->
-    <color name="ml_edit_focused">#a2cfcfcf</color>
-    <color name="ml_edit_no_focused">#a2c4c4c4</color>
-    <color name="ml_edit_message_focused">#f8f8f8f8</color>
-    <color name="ml_edit_message_no_focused">#11000000</color>
+    <!--间隔线颜色-->
+    <color name="item_divider">@color/vm_black_12</color>
 
 </resources>

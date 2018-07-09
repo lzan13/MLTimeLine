@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/vm_dimen_48"
+    >
+    <LinearLayout
+        android:id="@+id/vm_layout_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        >
+        <!--右侧按钮，默认为搜索-->
+        <ImageButton
+            android:id="@+id/vm_btn_right"
+            android:layout_width="@dimen/vm_dimen_48"
+            android:layout_height="@dimen/vm_dimen_48"
+            android:src="@drawable/ic_search"
+            android:visibility="gone"
+            style="@style/VMBtn.Flat.Full"
+            />
+        <!--更多按钮-->
+        <ImageButton
+            android:id="@+id/vm_btn_more"
+            android:layout_width="@dimen/vm_dimen_48"
+            android:layout_height="@dimen/vm_dimen_48"
+            android:src="@drawable/ic_more_horiz"
+            android:visibility="gone"
+            style="@style/VMBtn.Flat.Full"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/vm_layout_right"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+        <!--左边的按钮-->
+        <ImageButton
+            android:id="@+id/vm_btn_left"
+            android:layout_width="@dimen/vm_dimen_48"
+            android:layout_height="@dimen/vm_dimen_48"
+            android:src="@drawable/ic_arrow_back"
+            android:visibility="gone"
+            style="@style/VMBtn.Flat.Full"
+            />
+
+        <!--title 和返回按钮的间隔-->
+        <View
+            android:id="@+id/vm_view_space"
+            android:layout_width="@dimen/vm_dimen_16"
+            android:layout_height="@dimen/vm_dimen_48"
+            android:visibility="visible"
+            />
+
+        <!--中间标题 靠左显示-->
+        <TextView
+            android:id="@+id/vm_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="@string/app_name"
+            android:textColor="@color/vm_white"
+            android:textStyle="bold"
+            style="@style/VMText.Title"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

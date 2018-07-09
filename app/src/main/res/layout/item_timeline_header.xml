@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/img_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:paddingBottom="@dimen/vm_padding_large"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_default_cover"
+        android:tint="@color/vm_black_12"
+        />
+    <com.vmloft.develop.library.tools.widget.VMImageView
+        android:id="@+id/img_avatar"
+        android:layout_width="@dimen/vm_avatar_large"
+        android:layout_height="@dimen/vm_avatar_large"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_default_avatar_spider"
+        app:vm_border_color="@color/avatar_border"
+        app:vm_border_width="@dimen/vm_dimen_2"
+        app:vm_press_alpha="20"
+        app:vm_press_color="@color/press_tint"
+        app:vm_shape_type="round"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_cover"
+        android:layout_marginLeft="@dimen/vm_dimen_36"
+        android:orientation="horizontal"
+        >
+    </LinearLayout>
+</RelativeLayout>

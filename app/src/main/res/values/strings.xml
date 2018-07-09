@@ -1,140 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ml_hello">Hello World</string>
-    <string name="ml_test_text">测试数据，用来测试 TextView 显示效果，有时会需要长一点儿的数据，能达到换行的效果O(∩_∩)O~~</string>
+    <string name="hello">Hello World</string>
+    <string name="test_text">测试数据，用来测试 TextView 显示效果，有时会需要长一点儿的数据，能达到换行的效果O(∩_∩)O~~</string>
 
-    <string name="app_name">MLTimeLine</string>
+    <string name="app_name">时间线</string>
 
-
-    <string name="ml_search">搜索</string>
-    <string name="ml_face">表情</string>
-    <string name="ml_send">发送</string>
-    <string name="ml_setting">设置</string>
-    <string name="ml_help">帮助</string>
-    <string name="ml_copy">复制</string>
-
-
-    <string name="ml_open">打开</string>
-    <string name="ml_close">关闭</string>
-    <string name="ml_ok">确定</string>
-    <string name="ml_cancel">取消</string>
+    <string name="search">搜索</string>
+    <string name="face">表情</string>
+    <string name="send">发送</string>
+    <string name="setting">设置</string>
+    <string name="help">帮助</string>
+    <string name="copy">复制</string>
 
 
-    <string name="ml_signin">登录</string>
-    <string name="ml_signin_loading">正在登录，请稍候……</string>
-    <string name="ml_signin_goto">取消注册，去登录</string>
-    <string name="ml_signup">注册</string>
-    <string name="ml_signup_loading">正在注册，请稍候……</string>
-    <string name="ml_signup_goto">没有帐号，去注册</string>
-    <string name="ml_signout">登出</string>
-    <string name="ml_forget_password">忘记密码？</string>
-    <string name="ml_find_password">找回密码</string>
-    <string name="ml_find_password_goto_signin">找到密码，去登录</string>
-    <string name="ml_exit">退出</string>
-    <string name="ml_delete_account">删除账户</string>
-    <string name="ml_delete_account_msg">确定要删除吗？\n确定删除也不行，暂不提供删除功能，可退出重新登陆！\n\n1.点击确认将退出当前账户！</string>
+    <string name="save">保存</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
 
 
-    <string name="ml_spouse_add">添加另一半</string>
-    <string name="ml_spouse_not_null">还没有另一半，不能发表，前往账户设置添加另一半</string>
-    <string name="ml_spouse_nonentity">对方账户不存在，请确认</string>
-    <string name="ml_spouse_not_self">不能添加自己</string>
-    <string name="ml_spouse_add_success">添加对方成功，等待对方确认添加你</string>
-    <string name="ml_spouse_add_failed">添加对方失败，请重试</string>
-    <string name="ml_spouse_send_id">UID已复制，可发送给另一半</string>
-    <string name="ml_spouse_id_or_account">输入另一半的ID或账户</string>
+    <!--账户相关-->
+    <string name="sign_in">登录</string>
+    <string name="sign_in_go">去登录</string>
+    <string name="sign_up">注册</string>
+    <string name="go_sign_up">去注册</string>
+    <string name="sign_out">退出登录</string>
+    <string name="account_name">账户名</string>
+    <string name="account_password">密码</string>
+    <string name="no_account_yet">还没有账户？</string>
+    <string name="already_have_an_account">已经有账户了！</string>
+    <string name="already_find_password">已找到密码！</string>
 
-    <string name="ml_commemorate">纪念日</string>
-    <string name="ml_commemorate_put">新的纪念日</string>
-    <string name="ml_commemorate_title">纪念日标题</string>
-    <string name="ml_commemorate_title_not_null">纪念日标题不能为空</string>
-    <string name="ml_commemorate_content">每一个纪念日都有其特殊意义所在，这次的纪念日又有什么特别，写下来吧O(∩_∩)O~~</string>
-
-
-    <string name="ml_id">U_ID</string>
-    <string name="ml_account">账户</string>
-    <string name="ml_account_or_email">账户/邮箱</string>
-    <string name="ml_email">邮箱</string>
-    <string name="ml_nickname">昵称</string>
-    <string name="ml_signature">签名</string>
-    <string name="ml_location">地址</string>
-    <string name="ml_gender">性别</string>
-    <string name="ml_gender_1">男</string>
-    <string name="ml_gender_0">女</string>
-
-    <string name="ml_password">密码</string>
-    <string name="ml_password_old">旧密码</string>
-    <string name="ml_password_new">新密码</string>
-    <string name="ml_password_confirm">确认密码</string>
-    <string name="ml_password_change">修改密码</string>
-    <string name="ml_password_old_error">旧密码错误</string>
-    <string name="ml_password_change_success">更改密码成功</string>
-    <string name="ml_password_change_failed">更改密码失败</string>
+    <string name="signin_loading">正在登录，请稍候……</string>
+    <string name="signin_goto">取消注册，去登录</string>
+    <string name="signup">注册</string>
+    <string name="signup_loading">正在注册，请稍候……</string>
+    <string name="signup_goto">没有帐号，去注册</string>
+    <string name="signout">登出</string>
+    <string name="forget_password">忘记密码？</string>
+    <string name="find_password">找回密码</string>
+    <string name="exit">退出</string>
+    <string name="delete_account">删除账户</string>
+    <string name="delete_account_msg">确定要删除吗？\n确定删除也不行，暂不提供删除功能，可退出重新登陆！\n\n1.点击确认将退出当前账户！</string>
 
 
-    <string name="ml_content_null">唉唉！这里空空的没有内容~</string>
-    <string name="ml_content_exists">内容重复，不允许添加</string>
-    <string name="ml_refresh_faild">刷新失败</string>
-    <string name="ml_refresh_success">刷新成功</string>
+    <string name="spouse_add">添加另一半</string>
+    <string name="spouse_not_null">还没有另一半，不能发表，前往账户设置添加另一半</string>
+    <string name="spouse_nonentity">对方账户不存在，请确认</string>
+    <string name="spouse_not_self">不能添加自己</string>
+    <string name="spouse_add_success">添加对方成功，等待对方确认添加你</string>
+    <string name="spouse_add_failed">添加对方失败，请重试</string>
+    <string name="spouse_send_id">UID已复制，可发送给另一半</string>
+    <string name="spouse_id_or_account">输入另一半的ID或账户</string>
+
+    <string name="timeline">时间线</string>
+    <string name="event">大事件</string>
+    <string name="contacts">通讯录</string>
+    <string name="me">我</string>
+
+    <string name="commemorate_put">新的纪念日</string>
+    <string name="commemorate_title">纪念日标题</string>
+    <string name="commemorate_title_not_null">纪念日标题不能为空</string>
+    <string name="commemorate_content">每一个纪念日都有其特殊意义所在，这次的纪念日又有什么特别，写下来吧O(∩_∩)O~~</string>
 
 
-    <string name="ml_timeline">时间线</string>
-    <string name="ml_note_put">新的想法</string>
-    <string name="ml_note_add_msg">你想说什么？</string>
-    <string name="ml_note_send_success">Note成功发表</string>
-    <string name="ml_note_send_failed">Note发表失败</string>
-    <string name="ml_note_cancel_edit">放弃编辑</string>
-    <string name="ml_note_cancel_edit_msg">确定要放弃内容吗？放弃后内容将丢弃，不可恢复！</string>
-    <string name="ml_note_newest_success">刷新Note成功</string>
-    <string name="ml_note_newest_null">没有新的Note内容</string>
+    <string name="id">ID</string>
+    <string name="username">账户名</string>
+    <string name="phone">手机号</string>
+    <string name="email">邮箱</string>
+    <string name="nickname">昵称</string>
+    <string name="signature">签名</string>
+    <string name="location">地址</string>
+    <string name="gender">性别</string>
+    <string name="gender_1">男</string>
+    <string name="gender_0">女</string>
+
+    <string name="verify_code">验证码</string>
+    <string name="password">密码</string>
+    <string name="password_old">旧密码</string>
+    <string name="password_new">新密码</string>
+    <string name="password_confirm">确认密码</string>
+    <string name="password_change">修改密码</string>
+    <string name="password_old_error">旧密码错误</string>
+    <string name="password_change_success">更改密码成功</string>
+    <string name="password_change_failed">更改密码失败</string>
 
 
-    <string name="ml_message">消息</string>
-    <string name="ml_message_newest_success">获取消息成功</string>
-    <string name="ml_message_newest_null">没有最新消息</string>
-    <string name="ml_message_header">下拉可获取最新消息</string>
-    <string name="ml_message_footer">往前没有消息了</string>
-
-    <string name="ml_user_avatar_change_submit">正在保存头像……</string>
-    <string name="ml_user_avatar_change_success">头像保存成功^_^</string>
-    <string name="ml_user_avatar_change_failed">头像保存失败-_-</string>
-    <string name="ml_user_cover_change_submit">正在保存封面……</string>
-    <string name="ml_user_cover_change_success">封面保存成功^_^</string>
-    <string name="ml_user_cover_change_failed">封面保存失败-_-</string>
-    <string name="ml_user_info_change_success">更新信息成功</string>
-    <string name="ml_user_info_change_failed">更新信息失败</string>
-    <string name="ml_user_info_change_submit">正在保存账户信息...</string>
-    <string name="ml_user_access_token_overdue">账户过期，去重新验证</string>
-
-    <string name="ml_toast_not_null">每个输入项都必须填写，不能为空</string>
-    <string name="ml_toast_name_not_null">账户不能为空</string>
-    <string name="ml_toast_email_not_null">邮箱不能为空</string>
-    <string name="ml_toast_password_not_null">密码不能为空</string>
-    <string name="ml_toast_confirm_password_null">请确认密码</string>
-    <string name="ml_toast_name_nonentity">账户不存在</string>
-    <string name="ml_toast_name_exist">账户已存在</string>
-    <string name="ml_toast_password_error">密码错误</string>
-    <string name="ml_toast_signin_failed">登录失败</string>
-    <string name="ml_toast_signin_success">登录成功</string>
-    <string name="ml_toast_signup_failed">注册失败</string>
-    <string name="ml_toast_signup_success">注册成功</string>
-    <string name="ml_toast_forget_password">忘了密码找我o(∩_∩)o~~</string>
-
-    <string name="ml_error_http">无法连接服务器</string>
-    <string name="ml_error_db_null">数据库文件丢失，需重新登陆···</string>
-
-    <string name="ml_set_account">账户设置</string>
-    <string name="ml_set_about">关于</string>
-    <string name="ml_set_notify">通知</string>
-
-    <string name="ml_version">1.0</string>
-    <string name="ml_copyright">©2015 melove.net all rights reserved</string>
+    <string name="content_null">唉唉！这里空空的没有内容~</string>
+    <string name="content_exists">内容重复，不允许添加</string>
+    <string name="refresh_faild">刷新失败</string>
+    <string name="refresh_success">刷新成功</string>
 
 
-    <string-array name="ml_menu_title">
-        <item>@string/ml_timeline</item>
-        <item>@string/ml_commemorate</item>
-        <item>@string/ml_message</item>
+    <string name="moment_new">新的时刻</string>
+    <string name="moment_thinking">你在想什么？</string>
+    <string name="create_success">创建成功</string>
+    <string name="create_failed">Note发表失败</string>
+    <string name="cancel_edit">放弃编辑</string>
+    <string name="cancel_edit_msg">确定要放弃内容吗？放弃后内容将丢弃，不可恢复！</string>
+    <string name="data_refresh_success">数据刷新成功</string>
+    <string name="data_not_new">没有新内容</string>
+    <string name="data_not">没有内容</string>
+
+
+    <string name="message">消息</string>
+    <string name="message_newest_success">获取消息成功</string>
+    <string name="message_newest_null">没有最新消息</string>
+    <string name="message_header">下拉可获取最新消息</string>
+    <string name="message_footer">往前没有消息了</string>
+
+    <string name="user_avatar_change_submit">正在保存头像……</string>
+    <string name="user_avatar_change_success">头像保存成功^_^</string>
+    <string name="user_avatar_change_failed">头像保存失败-_-</string>
+    <string name="user_cover_change_submit">正在保存封面……</string>
+    <string name="user_cover_change_success">封面保存成功^_^</string>
+    <string name="user_cover_change_failed">封面保存失败-_-</string>
+    <string name="user_info_change_success">更新信息成功</string>
+    <string name="user_info_change_failed">更新信息失败</string>
+    <string name="user_info_change_submit">正在保存账户信息...</string>
+    <string name="user_access_token_overdue">账户过期，去重新验证</string>
+
+    <string name="name_not_null">账户不能为空</string>
+    <string name="email_not_null">邮箱不能为空</string>
+    <string name="password_not_null">密码不能为空</string>
+    <string name="confirm_password_null">请确认密码</string>
+    <string name="name_nonentity">账户不存在</string>
+    <string name="name_exist">账户已存在</string>
+    <string name="password_error">密码错误</string>
+    <string name="sign_in_failed">登录失败</string>
+    <string name="sign_in_success">登录成功</string>
+    <string name="sign_up_failed">注册失败</string>
+    <string name="sign_up_success">注册成功</string>
+
+    <string name="error_http">无法连接服务器</string>
+    <string name="error_db_null">数据库文件丢失，需重新登陆···</string>
+
+    <string name="account_info">账户信息</string>
+    <string name="set_account">账户设置</string>
+    <string name="set_about">关于</string>
+    <string name="set_notify">通知</string>
+
+
+    <string name="not_null">输入框不能为空</string>
+    <string name="toast_invalid_phone">无效的手机号</string>
+    <string name="toast_invalid_email">无效的邮箱</string>
+    <string name="toast_invalid_password">密码需"6-16"位，且不能包含特殊字符</string>
+
+
+    <!--VError described-->
+    <string name="err_unknown">未知错误</string>
+    <string name="err_server">服务器错误</string>
+    <string name="err_network_unusable">网络不可用</string>
+    <string name="err_network_timeout">网络超时</string>
+
+
+    <string name="version">1.0</string>
+    <string name="copyright">©2015 vmloft.com</string>
+
+    <string-array name="menu_title">
+        <item>@string/timeline</item>
+        <item>@string/event</item>
+        <item>@string/message</item>
     </string-array>
 
 </resources>

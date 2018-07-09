@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.melove.app.ml">
+    package="com.vmloft.develop.app.timeline">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".MLApplication"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:theme="@style/MLTheme.Transparent.Red">
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MLMainActivity"
+            android:name=".home.MainActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Launcher"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
+        <!--登录界面-->
         <activity
-            android:name=".activity.MLSignActivity"
+            android:name=".sign.SignActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:theme="@style/AppTheme.Sign"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <!--账户信息界面-->
         <activity
-            android:name=".activity.MLUserActivity"
+            android:name=".account.AccountActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <!--创建 Moment-->
         <activity
-            android:name=".activity.MLNotePutActivity"
+            android:name=".moment.MomentCreateActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
-            android:name=".activity.MLCommemoratePutActivity"
+            android:name=".event.EventCreateActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize"/>
     </application>
 
 </manifest>
